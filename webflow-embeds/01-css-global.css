@@ -1690,6 +1690,15 @@
       text-transform: uppercase;
     }
 
+    .logo-marquee-logo {
+      display: block;
+      flex: 0 0 auto;
+      width: auto;
+      height: clamp(34px, 3vw, 42px);
+      max-width: clamp(120px, 11vw, 186px);
+      object-fit: contain;
+    }
+
     .logo-marquee-icon {
       position: relative;
       display: inline-grid;
@@ -5891,6 +5900,11 @@
       .logo-marquee-item {
         font-size: clamp(1rem, 5vw, 1.42rem);
         gap: 10px;
+      }
+
+      .logo-marquee-logo {
+        height: 32px;
+        max-width: min(42vw, 168px);
       }
 
       .logo-marquee-icon {
