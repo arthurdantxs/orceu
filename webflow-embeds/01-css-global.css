@@ -1,4 +1,3 @@
-<style>
 @font-face {
       font-family: "Axiforma";
       src: url("assets/axiforma-book.ttf") format("truetype");
@@ -9728,4 +9727,3 @@
         grid-template-columns: repeat(5, 42px);
       }
     }
-</style>
