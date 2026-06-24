@@ -1666,12 +1666,23 @@
     }
 
     .logo-marquee-group {
+      position: relative;
       display: flex;
       flex: 0 0 auto;
       align-items: center;
       gap: var(--logo-marquee-gap);
-      margin-right: var(--logo-marquee-gap);
+      margin-right: calc(var(--logo-marquee-gap) * 1.65);
       white-space: nowrap;
+    }
+
+    .logo-marquee-group::after {
+      content: "";
+      display: block;
+      flex: 0 0 auto;
+      align-self: center;
+      width: 1px;
+      height: clamp(18px, 2vw, 26px);
+      background: rgba(171, 191, 244, 0.24);
     }
 
     .logo-marquee-item {
@@ -1695,6 +1706,14 @@
       height: clamp(34px, 3vw, 42px);
       max-width: clamp(120px, 11vw, 186px);
       object-fit: contain;
+    }
+
+    .logo-marquee-logo--arco {
+      height: clamp(38px, 3.25vw, 46px);
+    }
+
+    .logo-marquee-logo--patroni {
+      height: clamp(32px, 2.7vw, 38px);
     }
 
     .logo-marquee-icon {
@@ -5897,9 +5916,25 @@
         gap: 10px;
       }
 
+      .logo-marquee-group {
+        margin-right: 40px;
+      }
+
+      .logo-marquee-group::after {
+        height: 18px;
+      }
+
       .logo-marquee-logo {
         height: 32px;
         max-width: min(42vw, 168px);
+      }
+
+      .logo-marquee-logo--arco {
+        height: 35px;
+      }
+
+      .logo-marquee-logo--patroni {
+        height: 29px;
       }
 
       .logo-marquee-icon {
