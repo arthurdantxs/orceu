@@ -7,10 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Orceu</title>
   <link rel="preload" as="image" href="assets/banner-principal-hero.webp" imagesrcset="assets/banner-principal-hero.webp 1600w, assets/banner-principal-hero@2x.webp 2400w" imagesizes="100vw" fetchpriority="high">
+  <link rel="preload" href="assets/axiforma-book.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/axiforma-black.woff2" as="font" type="font/woff2" crossorigin>
   <style>
     @font-face {
       font-family: "Axiforma";
-      src: url("assets/axiforma-book.ttf") format("truetype");
+      src: url("assets/axiforma-book.woff2") format("woff2");
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -9899,8 +9901,8 @@
             srcset="assets/banner-principal-hero.webp 1600w, assets/banner-principal-hero@2x.webp 2400w"
             sizes="100vw"
             alt=""
-            width="7760"
-            height="3508"
+            width="1600"
+            height="723"
             fetchpriority="high"
             loading="eager"
             decoding="async">
@@ -11162,12 +11164,34 @@
 
     const heroBottom = document.querySelector(".hero-bottom");
     const hero = document.querySelector(".hero");
-    window.addEventListener("scroll", () => {
-      const rect = hero.getBoundingClientRect();
-      if (rect.bottom < 0) return;
-      const t = Math.max(0, window.scrollY / hero.offsetHeight);
-      heroBottom.style.transform = "translateY(" + (-t * 40) + "px)";
-    }, { passive: true });
+    if (heroBottom && hero) {
+      let heroHeight = 1;
+      let heroBottomTicking = false;
+
+      const syncHeroBottom = () => {
+        heroBottomTicking = false;
+        const t = Math.max(0, Math.min(1, window.scrollY / heroHeight));
+        heroBottom.style.transform = "translateY(" + (-t * 40) + "px)";
+      };
+
+      const updateHeroMetrics = () => {
+        heroHeight = Math.max(hero.offsetHeight, 1);
+      };
+
+      updateHeroMetrics();
+      syncHeroBottom();
+
+      window.addEventListener("resize", () => {
+        updateHeroMetrics();
+        syncHeroBottom();
+      }, { passive: true });
+
+      window.addEventListener("scroll", () => {
+        if (heroBottomTicking) return;
+        heroBottomTicking = true;
+        window.requestAnimationFrame(syncHeroBottom);
+      }, { passive: true });
+    }
 
     const resourceRevealItems = document.querySelectorAll(".resource-reveal");
     resourceRevealItems.forEach((item, index) => {
