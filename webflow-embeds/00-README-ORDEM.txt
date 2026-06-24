@@ -1,8 +1,9 @@
 ORDEM DOS EMBEDS NO WEBFLOW
 
 Cole nesta ordem. O arquivo 01 concentra todo o CSS global e precisa vir antes das secoes.
+No Webflow, cole o conteudo de `01-css-global.css` dentro de um embed com `<style>` e `</style>`.
 
-01. 01-css-global.html
+01. 01-css-global.css
 02. 10-fundo-navbar-hero.html
 03. 20-ecossistema.html
 04. 21-marquee-logos.html
