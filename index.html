@@ -1120,7 +1120,7 @@ injectSpeedInsights();
       position: relative;
       padding: clamp(48px, 6vw, 78px) max(56px, calc((100vw - 1140px) / 2)) clamp(44px, 5vw, 70px);
       overflow: hidden;
-      background: transparent;
+      background: linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
       font-family: "Axiforma", sans-serif;
       font-synthesis: none;
     }
@@ -1149,16 +1149,14 @@ injectSpeedInsights();
       margin: 0 auto;
       padding: clamp(38px, 4.2vw, 62px) clamp(30px, 5.2vw, 76px) clamp(42px, 5.2vw, 68px);
       overflow: hidden;
-      color: var(--white);
-      background: linear-gradient(180deg, var(--azul-abismo) 0%, #060e25 100%);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #050816;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      border: 1px solid rgba(15, 23, 42, 0.08);
       border-radius: clamp(30px, 4vw, 58px);
       box-shadow:
-        0 32px 64px rgba(3, 8, 28, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.25),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.35);
-      -webkit-backdrop-filter: blur(28px) saturate(130%);
-      backdrop-filter: blur(28px) saturate(130%);
+        0 28px 60px rgba(148, 163, 184, 0.16),
+        0 8px 24px rgba(15, 23, 42, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
     }
 
     .software-spotlight-shell::before {
@@ -1167,8 +1165,8 @@ injectSpeedInsights();
       inset: 0;
       pointer-events: none;
       background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 40%),
-        linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.4) 100%);
+        linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0) 36%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0) 54%, rgba(226, 232, 240, 0.52) 100%);
     }
 
     .software-spotlight-shell > * {
@@ -1207,15 +1205,15 @@ injectSpeedInsights();
     .software-spotlight .section-kicker {
       justify-content: center;
       margin: 0 auto 20px;
-      color: rgba(255, 255, 255, 0.86);
-      background: rgba(255, 255, 255, 0.035);
-      border-color: rgba(255, 255, 255, 0.2);
+      color: rgba(5, 8, 22, 0.76);
+      background: rgba(241, 245, 249, 0.92);
+      border-color: rgba(148, 163, 184, 0.32);
     }
 
     .software-spotlight h2 {
       max-width: none;
       margin: 0 auto;
-      color: var(--white);
+      color: #050816;
       font-family: "Axiforma", sans-serif;
       font-size: clamp(2.4rem, 4.4vw, 3.8rem);
       font-weight: 400;
@@ -1232,7 +1230,7 @@ injectSpeedInsights();
 
     .software-spotlight h2 span {
       display: block;
-      color: #ffffff;
+      color: #050816;
     }
 
     .software-spotlight h2 span:first-child {
@@ -1241,7 +1239,7 @@ injectSpeedInsights();
     }
 
     .software-spotlight h2 .highlight-blue {
-      color: #ffffff;
+      color: #050816;
       font-weight: 900;
     }
 
@@ -1255,11 +1253,16 @@ injectSpeedInsights();
 
     .software-spotlight-text p {
       margin: 0;
-      color: rgba(255, 255, 255, 0.56);
+      color: rgba(15, 23, 42, 0.68);
       font-size: clamp(0.94rem, 1.1vw, 1.06rem);
       font-weight: 400;
       line-height: 1.68;
       letter-spacing: -0.02em;
+    }
+
+    .software-spotlight .inline-riow-logo.logo-muted {
+      filter: grayscale(1) brightness(0);
+      opacity: 1;
     }
 
     /* ── Software Spotlight Stats Block ── */
@@ -1288,13 +1291,12 @@ injectSpeedInsights();
       z-index: -1;
       border-radius: 22px;
       background:
-        radial-gradient(circle at 12% 20%, rgba(3, 8, 24, 0.82) 0%, transparent 55%),
-        radial-gradient(circle at 88% 80%, rgba(3, 8, 24, 0.88) 0%, transparent 60%),
-        rgba(33, 70, 173, 0.82);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.12);
-      -webkit-backdrop-filter: blur(24px);
-      backdrop-filter: blur(24px);
+        radial-gradient(circle at 14% 22%, rgba(255, 255, 255, 0.9) 0%, transparent 48%),
+        linear-gradient(180deg, rgba(248, 250, 252, 0.96) 0%, rgba(241, 245, 249, 0.98) 100%);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.92),
+        0 12px 24px rgba(148, 163, 184, 0.12);
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       transform: translate3d(0, 0, 0);
@@ -1313,7 +1315,7 @@ injectSpeedInsights();
       align-items: flex-start;
       padding-left: clamp(12px, 2.2vw, 28px);
       padding-right: clamp(12px, 2.2vw, 28px);
-      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      border-right: 1px solid rgba(148, 163, 184, 0.2);
     }
 
     .software-spotlight-stat-col:first-child {
@@ -1328,7 +1330,7 @@ injectSpeedInsights();
     .software-spotlight-stat-top {
       font-size: clamp(0.64rem, 0.75vw, 0.74rem);
       font-weight: 600;
-      color: rgba(255, 255, 255, 0.45);
+      color: rgba(71, 85, 105, 0.72);
       text-transform: uppercase;
       letter-spacing: 0.06em;
       margin-bottom: 4px;
@@ -1337,10 +1339,9 @@ injectSpeedInsights();
     .software-spotlight-stat-val {
       font-size: clamp(1.25rem, 1.8vw, 1.85rem);
       font-weight: 800;
-      background: linear-gradient(135deg, #ffffff 0%, #b8cbff 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #0f172a;
+      background: none;
+      -webkit-text-fill-color: currentColor;
       line-height: 1.1;
       margin-bottom: 4px;
       letter-spacing: -0.02em;
@@ -1350,7 +1351,7 @@ injectSpeedInsights();
     .software-spotlight-stat-bot {
       font-size: clamp(0.68rem, 0.8vw, 0.8rem);
       font-weight: 500;
-      color: rgba(255, 255, 255, 0.65);
+      color: rgba(51, 65, 85, 0.76);
       line-height: 1.25;
       letter-spacing: -0.01em;
       white-space: nowrap;
@@ -1443,13 +1444,13 @@ injectSpeedInsights();
       position: relative;
       width: min(100%, 720px);
       aspect-ratio: 16 / 9;
-      background: #000;
+      background: #ffffff;
       border-radius: 16px;
-      border: 2px solid rgba(255, 255, 255, 0.3); /* increased border visible on blue */
+      border: 1px solid rgba(148, 163, 184, 0.34);
       box-shadow:
-        0 30px 60px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.05),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        0 24px 54px rgba(15, 23, 42, 0.12),
+        0 10px 24px rgba(148, 163, 184, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
       overflow: hidden;
       transform-origin: center center;
       transform-style: preserve-3d;
@@ -1465,7 +1466,7 @@ injectSpeedInsights();
     }
 
     .software-video-headline {
-      color: #ffffff;
+      color: #050816;
       font-size: clamp(1.48rem, 2.35vw, 2.08rem);
       font-weight: 300;
       text-align: center;
@@ -1484,14 +1485,14 @@ injectSpeedInsights();
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at 50% 50%, rgba(10, 19, 50, 0.08) 0%, rgba(10, 19, 50, 0.22) 58%, rgba(10, 19, 50, 0.34) 100%);
+      background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.04) 0%, rgba(15, 23, 42, 0.12) 58%, rgba(15, 23, 42, 0.24) 100%);
       pointer-events: none;
       z-index: 10;
       transition: background 0.25s ease;
     }
 
     .software-device:hover .software-device-play-overlay {
-      background: radial-gradient(circle at 50% 50%, rgba(10, 19, 50, 0.04) 0%, rgba(10, 19, 50, 0.18) 58%, rgba(10, 19, 50, 0.28) 100%);
+      background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.02) 0%, rgba(15, 23, 42, 0.08) 58%, rgba(15, 23, 42, 0.18) 100%);
     }
 
     .software-device-play-btn {
