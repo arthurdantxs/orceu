@@ -400,12 +400,34 @@
 
     const heroBottom = document.querySelector(".hero-bottom");
     const hero = document.querySelector(".hero");
-    window.addEventListener("scroll", () => {
-      const rect = hero.getBoundingClientRect();
-      if (rect.bottom < 0) return;
-      const t = Math.max(0, window.scrollY / hero.offsetHeight);
-      heroBottom.style.transform = "translateY(" + (-t * 40) + "px)";
-    }, { passive: true });
+    if (heroBottom && hero) {
+      let heroHeight = 1;
+      let heroBottomTicking = false;
+
+      const syncHeroBottom = () => {
+        heroBottomTicking = false;
+        const t = Math.max(0, Math.min(1, window.scrollY / heroHeight));
+        heroBottom.style.transform = "translateY(" + (-t * 40) + "px)";
+      };
+
+      const updateHeroMetrics = () => {
+        heroHeight = Math.max(hero.offsetHeight, 1);
+      };
+
+      updateHeroMetrics();
+      syncHeroBottom();
+
+      window.addEventListener("resize", () => {
+        updateHeroMetrics();
+        syncHeroBottom();
+      }, { passive: true });
+
+      window.addEventListener("scroll", () => {
+        if (heroBottomTicking) return;
+        heroBottomTicking = true;
+        window.requestAnimationFrame(syncHeroBottom);
+      }, { passive: true });
+    }
 
     const resourceRevealItems = document.querySelectorAll(".resource-reveal");
     resourceRevealItems.forEach((item, index) => {

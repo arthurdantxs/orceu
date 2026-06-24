@@ -1,6 +1,6 @@
 @font-face {
       font-family: "Axiforma";
-      src: url("assets/axiforma-book.ttf") format("truetype");
+      src: url("assets/axiforma-book.woff2") format("woff2");
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -720,9 +720,34 @@
     }
 
     .slide-main {
-      --slide-bg:
-        linear-gradient(90deg, rgba(5, 11, 34, 0.76) 0%, rgba(5, 11, 34, 0.58) 36%, rgba(5, 11, 34, 0.12) 64%, rgba(5, 11, 34, 0.18) 100%),
-        url("https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2bf5811662849f1bcfb494_banner-principal.jpg") center center / cover no-repeat;
+      --slide-bg: linear-gradient(135deg, #244cb6 0%, #193b95 58%, #10295f 100%);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .slide-main::before {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      content: "";
+      background: linear-gradient(90deg, rgba(5, 11, 34, 0.76) 0%, rgba(5, 11, 34, 0.58) 36%, rgba(5, 11, 34, 0.12) 64%, rgba(5, 11, 34, 0.18) 100%);
+    }
+
+    .slide-hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      display: block;
+      pointer-events: none;
+    }
+
+    .slide-hero-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
     }
     .slide-1 { --slide-bg: rgba(33, 70, 173, 0.45); }
     .slide-2 { --slide-bg: rgba(16, 19, 31, 0.6); }
@@ -3083,15 +3108,15 @@
     }
 
     .news-card.is-management .news-visual {
-      background-image: url("assets/bim_technology.png");
+      background-image: url("assets/bim_technology.webp");
     }
 
     .news-card.is-field .news-visual {
-      background-image: url("assets/construction_market.png");
+      background-image: url("assets/construction_market.webp");
     }
 
     .news-card.is-finance .news-visual {
-      background-image: url("assets/sustainable_concrete.png");
+      background-image: url("assets/sustainable_concrete.webp");
     }
 
     .news-card-body {

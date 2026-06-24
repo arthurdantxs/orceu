@@ -6,10 +6,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Orceu</title>
+  <link rel="preload" as="image" href="assets/banner-principal-hero.webp" imagesrcset="assets/banner-principal-hero.webp 1600w, assets/banner-principal-hero@2x.webp 2400w" imagesizes="100vw" fetchpriority="high">
+  <link rel="preload" href="assets/axiforma-book.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/axiforma-black.woff2" as="font" type="font/woff2" crossorigin>
   <style>
     @font-face {
       font-family: "Axiforma";
-      src: url("assets/axiforma-book.ttf") format("truetype");
+      src: url("assets/axiforma-book.woff2") format("woff2");
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -729,9 +732,34 @@
     }
 
     .slide-main {
-      --slide-bg:
-        linear-gradient(90deg, rgba(5, 11, 34, 0.76) 0%, rgba(5, 11, 34, 0.58) 36%, rgba(5, 11, 34, 0.12) 64%, rgba(5, 11, 34, 0.18) 100%),
-        url("https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2bf5811662849f1bcfb494_banner-principal.jpg") center center / cover no-repeat;
+      --slide-bg: linear-gradient(135deg, #244cb6 0%, #193b95 58%, #10295f 100%);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .slide-main::before {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      content: "";
+      background: linear-gradient(90deg, rgba(5, 11, 34, 0.76) 0%, rgba(5, 11, 34, 0.58) 36%, rgba(5, 11, 34, 0.12) 64%, rgba(5, 11, 34, 0.18) 100%);
+    }
+
+    .slide-hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      display: block;
+      pointer-events: none;
+    }
+
+    .slide-hero-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
     }
     .slide-1 { --slide-bg: rgba(33, 70, 173, 0.45); }
     .slide-2 { --slide-bg: rgba(16, 19, 31, 0.6); }
@@ -3092,15 +3120,15 @@
     }
 
     .news-card.is-management .news-visual {
-      background-image: url("assets/bim_technology.png");
+      background-image: url("assets/bim_technology.webp");
     }
 
     .news-card.is-field .news-visual {
-      background-image: url("assets/construction_market.png");
+      background-image: url("assets/construction_market.webp");
     }
 
     .news-card.is-finance .news-visual {
-      background-image: url("assets/sustainable_concrete.png");
+      background-image: url("assets/sustainable_concrete.webp");
     }
 
     .news-card-body {
@@ -9862,6 +9890,23 @@
   <main id="inicio" class="hero">
     <div class="slides">
       <article class="slide slide-main is-active">
+        <picture class="slide-hero-media" aria-hidden="true">
+          <source
+            srcset="assets/banner-principal-hero.webp 1600w, assets/banner-principal-hero@2x.webp 2400w"
+            sizes="100vw"
+            type="image/webp">
+          <img
+            class="slide-hero-image"
+            src="assets/banner-principal-hero.webp"
+            srcset="assets/banner-principal-hero.webp 1600w, assets/banner-principal-hero@2x.webp 2400w"
+            sizes="100vw"
+            alt=""
+            width="1600"
+            height="723"
+            fetchpriority="high"
+            loading="eager"
+            decoding="async">
+        </picture>
         <div class="slide-inner">
           <p class="eyebrow">Bem-vindo ao ecossistema Orceu</p>
           <h1>Tudo que você<br>precisa para sua<br>obra e construtora<br>em um só lugar.</h1>
@@ -9929,7 +9974,7 @@
         <article id="solucoes-copiloto" class="product-card copilot">
           <span class="card-chip">Software</span>
           <div class="product-brand">
-            <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2bf4392ddac2ab4f51fdfe_logo-orceu.svg" alt="Orceu">
+            <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2bf4392ddac2ab4f51fdfe_logo-orceu.svg" alt="Orceu" loading="lazy" decoding="async">
             <span class="product-name">Copiloto</span>
           </div>
           <p class="product-text">O copiloto digital criado dentro de uma construtora ativa. Software, IA e indicadores unidos pelo Método OP para levar engenheiros, arquitetos e donos de construtora da Obra Caos para a Obra Próspera dentro do prazo, custo, qualidade e comodidade para o cliente.</p>
@@ -9941,7 +9986,7 @@
         <article id="solucoes-empresarial" class="product-card enterprise">
           <span class="card-chip">Presencial</span>
           <div class="product-brand">
-            <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2bf4392ddac2ab4f51fdfe_logo-orceu.svg" alt="Orceu">
+            <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2bf4392ddac2ab4f51fdfe_logo-orceu.svg" alt="Orceu" loading="lazy" decoding="async">
             <span class="product-name">Empresarial</span>
           </div>
           <p class="product-text">A única imersão presencial da construção civil que acontece dentro de uma construtora ativa. Três dias conduzidos por Lucas Arruda para transformar a gestão, a liderança e os processos de quem quer construir uma empresa previsível, lucrativa e menos dependente do dono.</p>
@@ -9953,7 +9998,7 @@
         <article id="solucoes-mind" class="product-card mind">
           <span class="card-chip">Exclusivo</span>
           <div class="product-brand">
-            <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2bf4392ddac2ab4f51fdfe_logo-orceu.svg" alt="Orceu">
+            <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2bf4392ddac2ab4f51fdfe_logo-orceu.svg" alt="Orceu" loading="lazy" decoding="async">
             <span class="product-name">Mind</span>
           </div>
           <p class="product-text">O mastermind exclusivo da construção civil. Uma mesa com donos de construtora, engenheiros e arquitetos que já operam no método e se reúnem para acelerar decisões, trocar experience real e construir empresa com quem entende o jogo.</p>
@@ -10022,7 +10067,7 @@
         <div class="founder-copy">
           <p class="section-kicker">Método validado em campo</p>
           <h2 id="founder-title">Criado por quem viveu na prática.<br>Skin in the game.</h2>
-          <p>Lucas Arruda dirige a <a class="riow-logo-link" href="https://www.instagram.com/riow.construcao/" target="_blank" rel="noreferrer"><img class="inline-riow-logo logo-original" src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2c48775857d6e93c22030f_Ativo%2050.png" alt="Riow"></a> Construção e construiu o Método OP no único lugar onde método se prova: dentro de uma construtora própria, operando todo dia.</p>
+          <p>Lucas Arruda dirige a <a class="riow-logo-link" href="https://www.instagram.com/riow.construcao/" target="_blank" rel="noreferrer"><img class="inline-riow-logo logo-original" src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2c48775857d6e93c22030f_Ativo%2050.png" alt="Riow" loading="lazy" decoding="async"></a> Construção e construiu o Método OP no único lugar onde método se prova: dentro de uma construtora própria, operando todo dia.</p>
           <ul class="founder-stats" aria-label="Dados de impacto">
             <li>
               <span class="founder-stat-icon" aria-hidden="true">
@@ -10064,7 +10109,7 @@
 
         <div class="founder-card-wrap">
           <figure class="founder-card">
-            <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2bf43af0a9c9462035f880_lucas-ativo-2.png" alt="Lucas Arruda, CEO e fundador do Orceu e Riow Construção">
+            <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2bf43af0a9c9462035f880_lucas-ativo-2.png" alt="Lucas Arruda, CEO e fundador do Orceu e Riow Construção" loading="lazy" decoding="async" width="1011" height="1800">
           </figure>
         </div>
       </div>
@@ -10085,7 +10130,7 @@
 
               <div class="resources-brand-lockup">
                 <span class="resources-brand-mark" aria-hidden="true">
-                  <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a207eed3d6a914190084055_Ativo%203.webp" alt="">
+                  <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a207eed3d6a914190084055_Ativo%203.webp" alt="" loading="lazy" decoding="async">
                 </span>
                 <h3 class="resources-brand-title">Copiloto</h3>
               </div>
@@ -10104,7 +10149,7 @@
                     <li><span class="resources-check-dot" aria-hidden="true"></span><span>Orçamento sintético e analítico</span></li>
                     <li><span class="resources-check-dot" aria-hidden="true"></span><span>Curva ABC de insumos e serviços</span></li>
                     <li><span class="resources-check-dot" aria-hidden="true"></span><span>Importação de orçamentos</span></li>
-                    <li><span class="resources-check-dot" aria-hidden="true"></span><span>3 Modelos padrões <a class="riow-logo-link" href="https://www.instagram.com/riow.construcao/" target="_blank" rel="noreferrer"><img class="inline-riow-logo" src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2c48775857d6e93c22030f_Ativo%2050.png" alt="Riow"></a></span></li>
+                    <li><span class="resources-check-dot" aria-hidden="true"></span><span>3 Modelos padrões <a class="riow-logo-link" href="https://www.instagram.com/riow.construcao/" target="_blank" rel="noreferrer"><img class="inline-riow-logo" src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2c48775857d6e93c22030f_Ativo%2050.png" alt="Riow" loading="lazy" decoding="async"></a></span></li>
                   </ul>
                 </section>
 
@@ -10169,7 +10214,7 @@
 
               <div class="resources-brand-lockup">
                 <span class="resources-brand-mark" aria-hidden="true">
-                  <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a207eed3d6a914190084055_Ativo%203.webp" alt="">
+                  <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a207eed3d6a914190084055_Ativo%203.webp" alt="" loading="lazy" decoding="async">
                 </span>
                 <h3 class="resources-brand-title">Treinamentos</h3>
               </div>
@@ -10221,7 +10266,7 @@
 
               <div class="resources-brand-lockup">
                 <span class="resources-brand-mark" aria-hidden="true">
-                  <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a207eed3d6a914190084055_Ativo%203.webp" alt="">
+                  <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a207eed3d6a914190084055_Ativo%203.webp" alt="" loading="lazy" decoding="async">
                 </span>
                 <h3 class="resources-brand-title">Comunidade</h3>
               </div>
@@ -10274,7 +10319,7 @@
                   <div class="resources-full-heading-block">
                     <div class="resources-full-heading">
                       <span class="resources-brand-mark" aria-hidden="true">
-                        <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a207eed3d6a914190084055_Ativo%203.webp" alt="">
+                        <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a207eed3d6a914190084055_Ativo%203.webp" alt="" loading="lazy" decoding="async">
                       </span>
                       <div class="resources-full-heading-copy">
                         <h3>Ecossistema <span class="resources-full-accent">FULL</span></h3>
@@ -10285,15 +10330,15 @@
 
                   <div class="resources-full-includes" aria-label="Itens inclusos">
                     <div class="resources-full-include-row">
-                      <span class="resources-full-include-pill"><span class="resources-brand-mark" aria-hidden="true"><img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a207eed3d6a914190084055_Ativo%203.webp" alt=""></span>Copiloto</span>
+                      <span class="resources-full-include-pill"><span class="resources-brand-mark" aria-hidden="true"><img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a207eed3d6a914190084055_Ativo%203.webp" alt="" loading="lazy" decoding="async"></span>Copiloto</span>
                       <span class="resources-full-include-status">Incluso</span>
                     </div>
                     <div class="resources-full-include-row">
-                      <span class="resources-full-include-pill"><span class="resources-brand-mark" aria-hidden="true"><img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a207eed3d6a914190084055_Ativo%203.webp" alt=""></span>Comunidade</span>
+                      <span class="resources-full-include-pill"><span class="resources-brand-mark" aria-hidden="true"><img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a207eed3d6a914190084055_Ativo%203.webp" alt="" loading="lazy" decoding="async"></span>Comunidade</span>
                       <span class="resources-full-include-status">Incluso</span>
                     </div>
                     <div class="resources-full-include-row">
-                      <span class="resources-full-include-pill"><span class="resources-brand-mark" aria-hidden="true"><img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a207eed3d6a914190084055_Ativo%203.webp" alt=""></span>Treinamentos</span>
+                      <span class="resources-full-include-pill"><span class="resources-brand-mark" aria-hidden="true"><img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a207eed3d6a914190084055_Ativo%203.webp" alt="" loading="lazy" decoding="async"></span>Treinamentos</span>
                       <span class="resources-full-include-status">Incluso</span>
                     </div>
                   </div>
@@ -10337,7 +10382,7 @@
           </h2>
           
           <div class="software-spotlight-text">
-            <p>O Orceu Copiloto foi desenvolvido dentro da <a class="riow-logo-link" href="https://www.instagram.com/riow.construcao/" target="_blank" rel="noreferrer"><img class="inline-riow-logo logo-muted" src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2c48775857d6e93c22030f_Ativo%2050.png" alt="Riow"></a> Construção.<br>Orçamento, suprimentos, financeiro e cronograma integrados num único fluxo.</p>
+            <p>O Orceu Copiloto foi desenvolvido dentro da <a class="riow-logo-link" href="https://www.instagram.com/riow.construcao/" target="_blank" rel="noreferrer"><img class="inline-riow-logo logo-muted" src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2c48775857d6e93c22030f_Ativo%2050.png" alt="Riow" loading="lazy" decoding="async"></a> Construção.<br>Orçamento, suprimentos, financeiro e cronograma integrados num único fluxo.</p>
           </div>
 
           <!-- Stats Block -->
@@ -10380,7 +10425,7 @@
           <div class="software-device" aria-hidden="true">
             <video class="software-device-video" autoplay loop muted playsinline poster="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2bf439351254574b0fefa0_dashboard.png">
               <source src="assets/dashboard-video.mp4" type="video/mp4">
-              <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2bf439351254574b0fefa0_dashboard.png" alt="Orceu Copiloto Dashboard" class="software-device-screen-img">
+              <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2bf439351254574b0fefa0_dashboard.png" alt="Orceu Copiloto Dashboard" class="software-device-screen-img" loading="lazy" decoding="async" width="1024" height="540">
             </video>
             <div class="software-device-play-overlay">
               <div class="software-device-play-btn">
@@ -10602,7 +10647,7 @@
 
           <details class="faq-item">
             <summary class="faq-question">O que diferencia o Orceu de outros softwares de gestão?</summary>
-            <div class="faq-answer"><p>O Orceu foi criado dentro de uma construtora ativa. Lucas Arruda usa o produto na <a class="riow-logo-link" href="https://www.instagram.com/riow.construcao/" target="_blank" rel="noreferrer"><img class="inline-riow-logo" src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2c48775857d6e93c22030f_Ativo%2050.png" alt="Riow"></a> todo dia antes de qualquer cliente. Os modelos de orçamento, os fluxos de suprimentos e a lógica financeira vieram da operação real.</p></div>
+            <div class="faq-answer"><p>O Orceu foi criado dentro de uma construtora ativa. Lucas Arruda usa o produto na <a class="riow-logo-link" href="https://www.instagram.com/riow.construcao/" target="_blank" rel="noreferrer"><img class="inline-riow-logo" src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2c48775857d6e93c22030f_Ativo%2050.png" alt="Riow" loading="lazy" decoding="async"></a> todo dia antes de qualquer cliente. Os modelos de orçamento, os fluxos de suprimentos e a lógica financeira vieram da operação real.</p></div>
           </details>
 
           <details class="faq-item">
@@ -10632,7 +10677,7 @@
 
           <details class="faq-item">
             <summary class="faq-question">Como funciona o Orceu Empresarial?</summary>
-            <div class="faq-answer"><p>São 3 dias de imersão presencial dentro da <a class="riow-logo-link" href="https://www.instagram.com/riow.construcao/" target="_blank" rel="noreferrer"><img class="inline-riow-logo" src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2c48775857d6e93c22030f_Ativo%2050.png" alt="Riow"></a> Construção, com obra rodando, equipe operando e Lucas Arruda conduzindo cada sessão ao vivo. Não é palestra. É método aplicado dentro de uma construtora real. As turmas são limitadas e têm processo seletivo.</p></div>
+            <div class="faq-answer"><p>São 3 dias de imersão presencial dentro da <a class="riow-logo-link" href="https://www.instagram.com/riow.construcao/" target="_blank" rel="noreferrer"><img class="inline-riow-logo" src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2c48775857d6e93c22030f_Ativo%2050.png" alt="Riow" loading="lazy" decoding="async"></a> Construção, com obra rodando, equipe operando e Lucas Arruda conduzindo cada sessão ao vivo. Não é palestra. É método aplicado dentro de uma construtora real. As turmas são limitadas e têm processo seletivo.</p></div>
           </details>
 
           <details class="faq-item">
@@ -10650,7 +10695,7 @@
       <div class="site-footer-top">
         <div class="site-footer-brand">
           <a class="site-footer-mark" href="#inicio" aria-label="Orceu">
-            <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2bf4392ddac2ab4f51fdfe_logo-orceu.svg" alt="Orceu">
+            <img src="https://cdn.prod.website-files.com/6492e8ffc454a19867291571/6a2bf4392ddac2ab4f51fdfe_logo-orceu.svg" alt="Orceu" loading="lazy" decoding="async">
           </a>
           <p class="site-footer-copy" id="footer-brand-title">O Orceu é o maior ecossistema de desenvolvimento empresarial da construção civil. Reunimos treinamento, tecnologia e comunidade para transformar obras e empresas em máquinas de lucro, clareza e organização. Através do Orceu Empresarial, do Orceu Mind e do Orceu, ajudamos engenheiros, arquitetos e donos de construtora a dominarem gestão, indicadores, processos e cultura, conquistando obras prósperas e negócios que funcionam sem caos.</p>
           <div class="site-footer-utilities" aria-label="Redes sociais do Orceu">
@@ -11119,12 +11164,34 @@
 
     const heroBottom = document.querySelector(".hero-bottom");
     const hero = document.querySelector(".hero");
-    window.addEventListener("scroll", () => {
-      const rect = hero.getBoundingClientRect();
-      if (rect.bottom < 0) return;
-      const t = Math.max(0, window.scrollY / hero.offsetHeight);
-      heroBottom.style.transform = "translateY(" + (-t * 40) + "px)";
-    }, { passive: true });
+    if (heroBottom && hero) {
+      let heroHeight = 1;
+      let heroBottomTicking = false;
+
+      const syncHeroBottom = () => {
+        heroBottomTicking = false;
+        const t = Math.max(0, Math.min(1, window.scrollY / heroHeight));
+        heroBottom.style.transform = "translateY(" + (-t * 40) + "px)";
+      };
+
+      const updateHeroMetrics = () => {
+        heroHeight = Math.max(hero.offsetHeight, 1);
+      };
+
+      updateHeroMetrics();
+      syncHeroBottom();
+
+      window.addEventListener("resize", () => {
+        updateHeroMetrics();
+        syncHeroBottom();
+      }, { passive: true });
+
+      window.addEventListener("scroll", () => {
+        if (heroBottomTicking) return;
+        heroBottomTicking = true;
+        window.requestAnimationFrame(syncHeroBottom);
+      }, { passive: true });
+    }
 
     const resourceRevealItems = document.querySelectorAll(".resource-reveal");
     resourceRevealItems.forEach((item, index) => {
