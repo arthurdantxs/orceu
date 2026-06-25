@@ -1,29 +1,27 @@
 import Script from "next/script";
 import { loadLegacyHomeHtml } from "@/lib/legacy-site";
 
-const headerScrollScript = `(() => {
+const heroHeaderBoundsScript = `(() => {
   const header = document.querySelector(".site-header");
-  if (!header) return;
+  const hero = document.querySelector(".hero");
+  if (!header || !hero) return;
 
-  const getScrollTop = () => (
-    window.scrollY ||
-    window.pageYOffset ||
-    document.documentElement.scrollTop ||
-    document.body.scrollTop ||
-    0
-  );
+  const syncHeaderBounds = () => {
+    const heroRect = hero.getBoundingClientRect();
+    const headerHeight = header.offsetHeight || 0;
+    const floatingOffset = window.innerWidth <= 680 ? 8 : 14;
+    const headerBottom = floatingOffset + headerHeight;
+    const staysInsideHero = heroRect.bottom > headerBottom;
 
-  const syncHeaderState = () => {
-    header.classList.toggle("is-scrolled", getScrollTop() > 10);
+    header.classList.toggle("is-outside-hero", !staysInsideHero);
   };
 
-  syncHeaderState();
-  window.addEventListener("scroll", syncHeaderState, { passive: true });
-  document.addEventListener("scroll", syncHeaderState, { passive: true, capture: true });
-  window.addEventListener("resize", syncHeaderState, { passive: true });
-  window.addEventListener("hashchange", syncHeaderState, { passive: true });
-  window.addEventListener("load", syncHeaderState);
-  window.requestAnimationFrame(syncHeaderState);
+  syncHeaderBounds();
+  window.addEventListener("scroll", syncHeaderBounds, { passive: true });
+  window.addEventListener("resize", syncHeaderBounds, { passive: true });
+  window.addEventListener("load", syncHeaderBounds);
+  window.addEventListener("hashchange", syncHeaderBounds, { passive: true });
+  window.requestAnimationFrame(syncHeaderBounds);
 })();`;
 
 export default async function Home() {
@@ -35,8 +33,8 @@ export default async function Home() {
         className="legacy-home"
         dangerouslySetInnerHTML={{ __html: homeHtml }}
       />
-      <Script id="legacy-header-scroll" strategy="afterInteractive">
-        {headerScrollScript}
+      <Script id="hero-header-bounds" strategy="afterInteractive">
+        {heroHeaderBoundsScript}
       </Script>
       <Script
         src="/legacy-scripts/home-part-1.js"
@@ -49,4 +47,3 @@ export default async function Home() {
     </>
   );
 }
-

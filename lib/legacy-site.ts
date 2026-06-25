@@ -23,7 +23,7 @@ const HOME_FRAGMENTS = [
 ];
 
 const SCRIPT_TAG_RE = /<script\b[^>]*>[\s\S]*?<\/script>/gi;
-const RELATIVE_ASSET_RE = /\b(src|href|poster)=(")assets\//gi;
+const RELATIVE_ASSET_RE = /\b(src|href|poster)=(")(?:public\/)?assets\//gi;
 const MISSING_DASHBOARD_VIDEO_RE =
   /<source\s+src="assets\/dashboard-video\.mp4"\s+type="video\/mp4">\s*/i;
 
