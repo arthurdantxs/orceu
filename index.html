@@ -9672,8 +9672,49 @@ injectSpeedInsights();
         gap: 18px;
       }
 
+      .software-spotlight-shell {
+        padding: 28px 18px 34px;
+        border-radius: 28px;
+      }
+
+      .software-spotlight-copy {
+        width: 100%;
+        padding: 0;
+      }
+
+      .software-spotlight h2 {
+        font-size: clamp(1.9rem, 9vw, 2.45rem);
+      }
+
+      .software-spotlight h2 span:first-child,
+      .resources-title-line {
+        white-space: normal;
+      }
+
       .software-spotlight-stats {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        padding: 16px 14px;
+        gap: 12px 10px;
+      }
+
+      .software-spotlight-stat-col {
+        min-width: 0;
+        align-items: center;
+        text-align: center;
+      }
+
+      .software-spotlight-stat-top {
+        font-size: 0.58rem;
+      }
+
+      .software-spotlight-stat-val {
+        font-size: clamp(1.1rem, 5.8vw, 1.46rem);
+      }
+
+      .software-spotlight-stat-bot {
+        white-space: normal;
+        font-size: 0.72rem;
       }
 
       .software-spotlight-stat-col:last-child {
@@ -9691,6 +9732,43 @@ injectSpeedInsights();
       .resources-pricing-layout,
       .news-grid {
         grid-template-columns: 1fr;
+      }
+
+      .ecosystem-grid,
+      .resources-pricing-layout,
+      .news-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 14px;
+        max-width: none;
+        margin-right: 0;
+        margin-left: 0;
+        padding: 0 14px 10px 0;
+        overflow-x: auto;
+        overflow-y: visible;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .ecosystem-grid::-webkit-scrollbar,
+      .resources-pricing-layout::-webkit-scrollbar,
+      .news-grid::-webkit-scrollbar {
+        display: none;
+      }
+
+      .product-card,
+      .resources-pricing-card,
+      .resources-full-offer,
+      .news-card {
+        flex: 0 0 min(84vw, 332px);
+        width: min(84vw, 332px);
+        scroll-snap-align: start;
+      }
+
+      .resources-full-offer {
+        flex-basis: min(88vw, 352px);
+        width: min(88vw, 352px);
       }
 
       .resources-full-panel,
@@ -9808,6 +9886,26 @@ injectSpeedInsights();
 
       .hero h1 {
         font-size: clamp(1.95rem, 10.8vw, 2.72rem);
+      }
+
+      .product-card,
+      .resources-pricing-card,
+      .news-card {
+        flex-basis: min(86vw, 304px);
+        width: min(86vw, 304px);
+      }
+
+      .resources-full-offer {
+        flex-basis: min(89vw, 320px);
+        width: min(89vw, 320px);
+      }
+
+      .software-spotlight-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .software-spotlight-stat-col:last-child {
+        grid-column: auto;
       }
 
       .eyebrow {
