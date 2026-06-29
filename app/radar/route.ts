@@ -14,6 +14,10 @@ const RADAR_DOT_FIX =
   'width:7px;height:7px;border-radius:50%;background:#FF6A1A;box-shadow:0 0 0 3px rgba(255,106,26,.16);flex-shrink:0';
 const RADAR_DOT_FIXED =
   'width:7px;height:7px;border-radius:50%;background:#18A957;box-shadow:0 0 0 3px rgba(24,169,87,.16);flex-shrink:0';
+const MASTHEAD_BRAND_FIX =
+  `<div onclick=\\"{{ goHome }}\\" style=\\"cursor:pointer;line-height:1\\">\\n        <div style=\\"display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap\\">\\n          <img src=\\"/assets/logo-orceu.svg\\" alt=\\"Orceu\\" style=\\"height:42px;width:auto;display:block;flex:0 0 auto\\">\\n          <span style=\\"font-family:'Axiforma',sans-serif;font-weight:800;font-size:16px;letter-spacing:.34em;text-transform:uppercase;color:#2146AD;padding-bottom:4px\\">RADAR<\\/span>\\n        <\\/div>\\n        <div style=\\"font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#5B72B8;margin-top:8px;font-weight:600\\">Radar da construcao civil com metodo<\\/div>\\n      <\\/div>`;
+const MASTHEAD_BRAND_FIXED =
+  `<div onclick=\\"{{ goHome }}\\" style=\\"cursor:pointer;line-height:1\\">\\n        <div style=\\"display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap\\">\\n          <span style=\\"font-family:'Axiforma',sans-serif;font-weight:800;font-size:15px;letter-spacing:.34em;text-transform:uppercase;color:#FAF7F1;padding-bottom:3px\\">RADAR<\\/span>\\n          <img src=\\"/assets/logo-orceu.svg\\" alt=\\"Orceu\\" style=\\"height:42px;width:auto;display:block;flex:0 0 auto\\">\\n        <\\/div>\\n        <div style=\\"font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8EA3E3;margin-top:12px;font-weight:600\\">O Radar oficial da construcao civil<\\/div>\\n      <\\/div>`;
 const WEATHER_STATUS_FIX =
   '<div style=\\"display:flex;align-items:center;gap:7px;padding-left:20px;flex-shrink:0\\">\\n        <span style=\\"width:6px;height:6px;border-radius:50%;background:#2146AD\\"><\\/span>\\n        <span style=\\"font-size:10px;font-weight:600;letter-spacing:.04em;color:#A89D8C;white-space:nowrap\\">Atualizado há 4 min<\\/span>\\n      <\\/div>';
 
@@ -54,6 +58,7 @@ export async function GET() {
   const html = baseHtml
     .replace(TICKER_LABEL_FIX, TICKER_LABEL_FIXED)
     .replace(RADAR_DOT_FIX, RADAR_DOT_FIXED)
+    .replace(MASTHEAD_BRAND_FIX, MASTHEAD_BRAND_FIXED)
     .replace(
       WEATHER_STATUS_FIX,
       `<div style=\\"display:flex;align-items:center;gap:7px;padding-left:20px;min-width:0;max-width:190px\\">\\n        <span style=\\"width:6px;height:6px;border-radius:50%;background:#2146AD;flex-shrink:0\\"><\\/span>\\n        <span style=\\"font-size:10px;font-weight:700;letter-spacing:.01em;color:#5B72B8;line-height:1.3;white-space:normal\\">${rainForecastLabel}<\\/span>\\n      <\\/div>`,
