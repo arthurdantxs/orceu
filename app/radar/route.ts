@@ -16,6 +16,7 @@ const ARAGUAINA_COORDS = {
 };
 
 const RADAR_LIGHT_BLUE = "#C9D9FF";
+const RADAR_TEXT_GRAY = "#8E95A5";
 
 const UTILITY_BAR_HTML = `<!-- Utility bar -->
   <div style="background:#2146AD;color:#EAF0FF;border-bottom:1px solid rgba(33,70,173,.18)">
@@ -198,7 +199,12 @@ function customizeExpandedRadarDocument(html: string, rainForecastLabel: string)
     .replace(/<div class="mh-search"[\s\S]*?<\/div>\s*<\/div>\s*<\/header>/, "</div>\n  </header>")
     .replaceAll("#FF6A1A", RADAR_LIGHT_BLUE)
     .replaceAll("#D9530A", RADAR_LIGHT_BLUE)
-    .replaceAll("rgba(255,106,26,.16)", "rgba(201,217,255,.24)");
+    .replaceAll("rgba(255,106,26,.16)", "rgba(201,217,255,.24)")
+    .replaceAll("#9A8C7C", RADAR_TEXT_GRAY)
+    .replaceAll("#A89D8C", RADAR_TEXT_GRAY)
+    .replaceAll("#5A5349", RADAR_TEXT_GRAY)
+    .replaceAll("#B5AD9F", RADAR_TEXT_GRAY)
+    .replaceAll("#9A9183", RADAR_TEXT_GRAY);
 }
 
 export async function GET() {
