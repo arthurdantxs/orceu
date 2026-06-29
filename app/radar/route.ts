@@ -10,10 +10,11 @@ const TICKER_LABEL_FIX =
   "background:#2146AD;color:#2146AD;font-weight:800;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;padding:9px 18px;display:flex;align-items:center;white-space:nowrap;flex-shrink:0";
 const TICKER_LABEL_FIXED =
   "background:#2146AD;color:#FAF7F1;font-weight:800;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;padding:9px 18px;display:flex;align-items:center;white-space:nowrap;flex-shrink:0";
+const RADAR_LIGHT_BLUE = "#8EA3E3";
 const RADAR_DOT_FIX =
   'width:7px;height:7px;border-radius:50%;background:#FF6A1A;box-shadow:0 0 0 3px rgba(255,106,26,.16);flex-shrink:0';
 const RADAR_DOT_FIXED =
-  'width:7px;height:7px;border-radius:50%;background:#18A957;box-shadow:0 0 0 3px rgba(24,169,87,.16);flex-shrink:0';
+  'width:7px;height:7px;border-radius:50%;background:#8EA3E3;box-shadow:0 0 0 3px rgba(142,163,227,.22);flex-shrink:0';
 const MASTHEAD_BRAND_FIX =
   `<div onclick=\\"{{ goHome }}\\" style=\\"cursor:pointer;line-height:1\\">\\n        <div style=\\"display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap\\">\\n          <img src=\\"/assets/logo-orceu.svg\\" alt=\\"Orceu\\" style=\\"height:42px;width:auto;display:block;flex:0 0 auto\\">\\n          <span style=\\"font-family:'Axiforma',sans-serif;font-weight:800;font-size:16px;letter-spacing:.34em;text-transform:uppercase;color:#2146AD;padding-bottom:4px\\">RADAR<\\/span>\\n        <\\/div>\\n        <div style=\\"font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#5B72B8;margin-top:8px;font-weight:600\\">Radar da construcao civil com metodo<\\/div>\\n      <\\/div>`;
 const MASTHEAD_BRAND_FIXED =
@@ -62,6 +63,9 @@ export async function GET() {
     .replace(TICKER_LABEL_FIX, TICKER_LABEL_FIXED)
     .replace(RADAR_DOT_FIX, RADAR_DOT_FIXED)
     .replace(MASTHEAD_BRAND_FIX, MASTHEAD_BRAND_FIXED)
+    .replaceAll("#FF6A1A", RADAR_LIGHT_BLUE)
+    .replaceAll("#D9530A", RADAR_LIGHT_BLUE)
+    .replaceAll("rgba(255,106,26,.16)", "rgba(142,163,227,.22)")
     .replace(/<div class=\\"mh-search\\"[\s\S]*?<\\\/div>/, "")
     .replace(
       WEATHER_STATUS_FIX,
