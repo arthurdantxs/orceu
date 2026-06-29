@@ -40,11 +40,11 @@ const MASTHEAD_BRAND_HTML = `<div onclick="{{ goHome }}" style="cursor:pointer;l
       </div>`;
 
 const MASTHEAD_BRAND_FIXED_HTML = `<div onclick="{{ goHome }}" style="cursor:pointer;line-height:1">
-        <div style="display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap">
-          <span style="font-family:'Axiforma',sans-serif;font-weight:800;font-size:15px;letter-spacing:.34em;text-transform:uppercase;color:#FAF7F1;padding-bottom:3px">RADAR</span>
-          <img src="/assets/logo-orceu.svg" alt="Orceu" style="height:42px;width:auto;display:block;flex:0 0 auto">
+        <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+          <span style="font-family:'Axiforma',sans-serif;font-weight:800;font-size:18px;letter-spacing:.38em;text-transform:uppercase;color:#FAF7F1;padding-top:6px">RADAR</span>
+          <img src="/assets/logo-orceu.svg" alt="Orceu" style="height:52px;width:auto;display:block;flex:0 0 auto">
         </div>
-        <div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8EA3E3;margin-top:12px;font-weight:600">O RADAR OFICIAL DA CONSTRUÇÃO CIVIL</div>
+        <div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8EA3E3;margin-top:14px;font-weight:600">O RADAR OFICIAL DA CONSTRUÇÃO CIVIL</div>
       </div>`;
 
 const ARTICLE_META_HTML = `<div style="display:flex;align-items:center;gap:14px;padding:16px 0;border-top:1px solid #E7E2D8;border-bottom:1px solid #E7E2D8;margin-bottom:26px">
