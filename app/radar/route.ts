@@ -147,9 +147,9 @@ async function getRainForecastLabel() {
       (value: unknown) => typeof value === "number" && value >= 0.2,
     ).length;
 
-    if (rainyDays === 0) return "Sem chuva nos próximos 7 dias";
-    if (rainyDays === 1) return "Chuva em 1 dos próximos 7 dias";
-    return `Chuva em ${rainyDays} dos próximos 7 dias`;
+    if (rainyDays === 0) return "Sem chuva em 7 dias";
+    if (rainyDays === 1) return "Chuva em 1 dia";
+    return `Chuva em ${rainyDays} dias`;
   } catch {
     return "Previsão indisponível";
   }
@@ -174,9 +174,12 @@ function customizeExpandedRadarDocument(html: string, rainForecastLabel: string)
         </div>
       </div>
 
-      <div style="display:flex;flex-direction:column;justify-content:center;gap:3px;padding-left:18px;flex-shrink:0;min-width:168px">
-        <span style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9A8C7C">Chuva 7d</span>
-        <span style="font-size:10.5px;font-weight:700;letter-spacing:.01em;color:#5B72B8;line-height:1.2">${rainForecastLabel}</span>
+      <div style="display:flex;align-items:center;gap:10px;padding-left:18px;margin-left:18px;border-left:1px solid #ECE7DD;flex-shrink:0;min-width:132px">
+        <span style="width:7px;height:7px;border-radius:50%;background:#8EA3E3;box-shadow:0 0 0 3px rgba(142,163,227,.18);flex-shrink:0"></span>
+        <div style="display:flex;flex-direction:column;justify-content:center;gap:2px;min-width:0">
+          <span style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9A8C7C">Chuva 7d</span>
+          <span style="font-size:9.5px;font-weight:700;letter-spacing:.01em;color:#5B72B8;line-height:1.15;max-width:110px">${rainForecastLabel}</span>
+        </div>
       </div>`,
     )
     .replace(NEWSLETTER_HTML, NEWSLETTER_FIXED_HTML)
