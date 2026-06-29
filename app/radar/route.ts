@@ -18,6 +18,8 @@ const MASTHEAD_BRAND_FIX =
   `<div onclick=\\"{{ goHome }}\\" style=\\"cursor:pointer;line-height:1\\">\\n        <div style=\\"display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap\\">\\n          <img src=\\"/assets/logo-orceu.svg\\" alt=\\"Orceu\\" style=\\"height:42px;width:auto;display:block;flex:0 0 auto\\">\\n          <span style=\\"font-family:'Axiforma',sans-serif;font-weight:800;font-size:16px;letter-spacing:.34em;text-transform:uppercase;color:#2146AD;padding-bottom:4px\\">RADAR<\\/span>\\n        <\\/div>\\n        <div style=\\"font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#5B72B8;margin-top:8px;font-weight:600\\">Radar da construcao civil com metodo<\\/div>\\n      <\\/div>`;
 const MASTHEAD_BRAND_FIXED =
   `<div onclick=\\"{{ goHome }}\\" style=\\"cursor:pointer;line-height:1\\">\\n        <div style=\\"display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap\\">\\n          <span style=\\"font-family:'Axiforma',sans-serif;font-weight:800;font-size:15px;letter-spacing:.34em;text-transform:uppercase;color:#FAF7F1;padding-bottom:3px\\">RADAR<\\/span>\\n          <img src=\\"/assets/logo-orceu.svg\\" alt=\\"Orceu\\" style=\\"height:42px;width:auto;display:block;flex:0 0 auto\\">\\n        <\\/div>\\n        <div style=\\"font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8EA3E3;margin-top:12px;font-weight:600\\">O Radar oficial da construcao civil<\\/div>\\n      <\\/div>`;
+const UTILITY_BAR_FIX =
+  `\\n  <!-- Utility bar -->\\n  <div style=\\"background:#2146AD;color:#EAF0FF;border-bottom:1px solid rgba(33,70,173,.18)\\">\\n    <div class=\\"ub-inner px24\\" style=\\"max-width:1240px;margin:0 auto;padding:9px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px\\">\\n      <span class=\\"ub-date\\" style=\\"font-size:11px;letter-spacing:.14em;font-weight:600\\">{{ dateStr }}<\\/span>\\n      <div style=\\"display:flex;align-items:center;gap:22px;font-size:11.5px;letter-spacing:.1em;font-weight:600;text-transform:uppercase\\">\\n        <span class=\\"ub-hide-sm\\" style=\\"color:#9A9183\\" data-comment-anchor=\\"b8738bc7c8-span\\">Edição Brasil<\\/span>\\n        <span class=\\"ub-hide-sm\\" style=\\"color:#9A9183;cursor:pointer\\">Newsletter<\\/span>\\n        <span style=\\"color:#2146AD;cursor:pointer\\">Entrar<\\/span>\\n      <\\/div>\\n    <\\/div>\\n  <\\/div>\\n`;
 const WEATHER_STATUS_FIX =
   '<div style=\\"display:flex;align-items:center;gap:7px;padding-left:20px;flex-shrink:0\\">\\n        <span style=\\"width:6px;height:6px;border-radius:50%;background:#2146AD\\"><\\/span>\\n        <span style=\\"font-size:10px;font-weight:600;letter-spacing:.04em;color:#A89D8C;white-space:nowrap\\">Atualizado há 4 min<\\/span>\\n      <\\/div>';
 
@@ -56,6 +58,7 @@ export async function GET() {
     getRainForecastLabel(),
   ]);
   const html = baseHtml
+    .replace(UTILITY_BAR_FIX, "\n")
     .replace(TICKER_LABEL_FIX, TICKER_LABEL_FIXED)
     .replace(RADAR_DOT_FIX, RADAR_DOT_FIXED)
     .replace(MASTHEAD_BRAND_FIX, MASTHEAD_BRAND_FIXED)
