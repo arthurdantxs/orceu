@@ -194,6 +194,50 @@ function customizeExpandedRadarDocument(html: string, rainForecastLabel: string)
       'style="display:flex;align-items:center;gap:20px;overflow-x:auto;padding:18px 24px;background:#FAF7F1;border-bottom:1px solid #ECE7DD;flex-wrap:wrap"',
     )
     .replace(
+      '<section class="hero-grid" style="display:grid;grid-template-columns:1.95fr 1fr;gap:34px;padding-bottom:34px;border-bottom:1px solid #E7E2D8">',
+      '<section class="hero-grid" style="display:grid;grid-template-columns:1.95fr 1fr;gap:34px;padding-bottom:18px">',
+    )
+    .replace(
+      '<article onclick="{{ s.open }}" style="cursor:pointer;display:grid;grid-template-columns:1fr;gap:12px;padding-bottom:22px;border-bottom:1px solid #E7E2D8">',
+      '<article onclick="{{ s.open }}" style="cursor:pointer;display:grid;grid-template-columns:1fr;gap:12px;padding-bottom:10px">',
+    )
+    .replace(
+      `<div style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+          <h3 style="font-family:'Axiforma',sans-serif;font-weight:800;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#2146AD;margin:0">Últimas notícias</h3>
+          <div style="height:1px;background:#E7E2D8;flex:1"></div>
+        </div>`,
+      `<div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+          <span style="width:10px;height:10px;border-radius:50%;background:#C9D9FF;box-shadow:0 0 0 6px rgba(201,217,255,.22);flex-shrink:0"></span>
+          <h3 style="font-family:'Axiforma',sans-serif;font-weight:800;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#2146AD;margin:0">Últimas notícias</h3>
+        </div>`,
+    )
+    .replace(
+      `<div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="color:#C9D9FF;font-size:18px">▲</span>
+            <h3 style="font-family:'Axiforma',sans-serif;font-weight:800;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#2146AD;margin:0">Mais lidas</h3>
+          </div>
+          <div style="border-top:3px solid #2146AD">`,
+      `<div style="background:#F5F8FF;border:1px solid rgba(33,70,173,.1);border-radius:18px;padding:18px 18px 6px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <span style="width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:14px solid #C9D9FF;transform:translateY(-1px)"></span>
+            <h3 style="font-family:'Axiforma',sans-serif;font-weight:800;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#2146AD;margin:0">Mais lidas</h3>
+          </div>
+          <div>`,
+    )
+    .replaceAll(
+      '<div style="border-top:3px solid #2146AD">',
+      '<div style="background:#F5F8FF;border:1px solid rgba(33,70,173,.1);border-radius:18px;padding:6px 18px">',
+    )
+    .replaceAll(
+      '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">',
+      '<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">',
+    )
+    .replace(
+      '<article onclick="{{ m.open }}" style="cursor:pointer;display:grid;grid-template-columns:auto 1fr;gap:14px;padding:16px 0;border-bottom:1px solid #E7E2D8;align-items:start">',
+      '<article onclick="{{ m.open }}" style="cursor:pointer;display:grid;grid-template-columns:auto 1fr;gap:14px;padding:15px 0;border-bottom:1px solid rgba(33,70,173,.1);align-items:start">',
+    )
+    .replace(
       'style="max-width:1240px;margin:0 auto;padding:26px 24px 22px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px"',
       'style="max-width:1240px;margin:0 auto;padding:26px 24px 22px;display:flex;align-items:flex-end;justify-content:flex-start;gap:24px"',
     )
