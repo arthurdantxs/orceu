@@ -10,6 +10,10 @@ const TICKER_LABEL_FIX =
   "background:#2146AD;color:#2146AD;font-weight:800;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;padding:9px 18px;display:flex;align-items:center;white-space:nowrap;flex-shrink:0";
 const TICKER_LABEL_FIXED =
   "background:#2146AD;color:#FAF7F1;font-weight:800;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;padding:9px 18px;display:flex;align-items:center;white-space:nowrap;flex-shrink:0";
+const RADAR_DOT_FIX =
+  'width:7px;height:7px;border-radius:50%;background:#FF6A1A;box-shadow:0 0 0 3px rgba(255,106,26,.16);flex-shrink:0';
+const RADAR_DOT_FIXED =
+  'width:7px;height:7px;border-radius:50%;background:#18A957;box-shadow:0 0 0 3px rgba(24,169,87,.16);flex-shrink:0';
 const WEATHER_STATUS_FIX =
   '<div style=\\"display:flex;align-items:center;gap:7px;padding-left:20px;flex-shrink:0\\">\\n        <span style=\\"width:6px;height:6px;border-radius:50%;background:#2146AD\\"><\\/span>\\n        <span style=\\"font-size:10px;font-weight:600;letter-spacing:.04em;color:#A89D8C;white-space:nowrap\\">Atualizado há 4 min<\\/span>\\n      <\\/div>';
 
@@ -49,6 +53,7 @@ export async function GET() {
   ]);
   const html = baseHtml
     .replace(TICKER_LABEL_FIX, TICKER_LABEL_FIXED)
+    .replace(RADAR_DOT_FIX, RADAR_DOT_FIXED)
     .replace(
       WEATHER_STATUS_FIX,
       `<div style=\\"display:flex;align-items:center;gap:7px;padding-left:20px;min-width:0;max-width:190px\\">\\n        <span style=\\"width:6px;height:6px;border-radius:50%;background:#2146AD;flex-shrink:0\\"><\\/span>\\n        <span style=\\"font-size:10px;font-weight:700;letter-spacing:.01em;color:#5B72B8;line-height:1.3;white-space:normal\\">${rainForecastLabel}<\\/span>\\n      <\\/div>`,
