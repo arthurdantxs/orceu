@@ -217,7 +217,7 @@ const pageStyles = `
     display: none;
   }
 
-  .radar-home-nav a {
+  .radar-home-nav > a:not(.radar-back-home-link) {
     flex: 0 0 auto;
     padding: 14px 18px;
     background: transparent;
@@ -233,37 +233,46 @@ const pageStyles = `
     align-items: center;
   }
 
-  .radar-home-nav a span {
+  .radar-home-nav > a:not(.radar-back-home-link) span {
     display: inline-block;
     transition: transform .22s ease;
     transform-origin: center;
   }
 
-  .radar-home-nav a:hover {
+  .radar-home-nav > a:not(.radar-back-home-link):hover {
     background: transparent;
     color: #eef3ff;
   }
 
-  .radar-home-nav a:hover span {
+  .radar-home-nav > a:not(.radar-back-home-link):hover span {
     transform: scale(1.08);
   }
 
-  .radar-home-nav a:first-child {
+  .radar-home-nav > a:first-child {
     padding-left: 0;
   }
 
-  .radar-home-nav a.active {
+  .radar-home-nav > a.active {
     color: #ffffff;
+  }
+
+  .radar-nav-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 8px;
+    padding-left: 8px;
+    border-left: 1px solid rgba(255,255,255,.12);
+    flex: 0 0 auto;
   }
 
   .radar-state-select-wrap {
     display: flex;
     align-items: center;
-    padding: 0 0 0 8px;
+    padding: 0;
     margin-left: 0;
-    border-left: 1px solid rgba(255,255,255,.12);
+    border-left: 0;
     flex: 0 0 auto;
-    height: 100%;
   }
 
   .radar-back-home-link {
@@ -271,8 +280,8 @@ const pageStyles = `
     align-items: center;
     justify-content: center;
     height: 22px !important;
-    margin-left: 6px;
-    padding: 0 11px;
+    margin-left: 0;
+    padding: 0 12px;
     border-radius: 999px;
     background: rgba(255,255,255,.08);
     color: #eef3ff !important;
@@ -285,17 +294,6 @@ const pageStyles = `
     white-space: nowrap;
     flex: 0 0 auto;
     align-self: center;
-  }
-
-  .radar-back-home-link::before {
-    content: "";
-    margin-right: 5px;
-    width: 5px;
-    height: 5px;
-    border-left: 1.5px solid currentColor;
-    border-bottom: 1.5px solid currentColor;
-    transform: rotate(45deg);
-    line-height: 1;
   }
 
   .radar-state-select {
@@ -326,8 +324,7 @@ const pageStyles = `
     background: #ffffff;
   }
 
-  .radar-home-nav .radar-back-home-link,
-  .radar-home-nav .radar-state-select-wrap {
+  .radar-home-nav .radar-back-home-link {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
   }
@@ -960,12 +957,12 @@ const pageStyles = `
       max-width: 100%;
     }
 
-    .radar-home-nav a {
+    .radar-home-nav > a:not(.radar-back-home-link) {
       padding-left: 16px;
       padding-right: 16px;
     }
 
-    .radar-home-nav a:first-child {
+    .radar-home-nav > a:first-child {
       padding-left: 0;
     }
 
@@ -1160,26 +1157,28 @@ export default async function RadarArticlePage({ params }: ArticlePageProps) {
               <span>{category.name}</span>
             </Link>
           ))}
-          <label className="radar-state-select-wrap" aria-label="Selecionar estado">
-            <select
-              className="radar-state-select"
-              data-radar-state-select
-              defaultValue=""
-              title="Selecionar estado"
-            >
-              <option value="" disabled>
-                UF
-              </option>
-              {BRAZIL_STATES.map((state) => (
-                <option key={state} value={state}>
-                  {state}
+          <div className="radar-nav-actions">
+            <label className="radar-state-select-wrap" aria-label="Selecionar estado">
+              <select
+                className="radar-state-select"
+                data-radar-state-select
+                defaultValue=""
+                title="Selecionar estado"
+              >
+                <option value="" disabled>
+                  UF
                 </option>
-              ))}
-            </select>
-          </label>
-          <Link href="/" className="radar-back-home-link">
-            Voltar para o Orceu
-          </Link>
+                {BRAZIL_STATES.map((state) => (
+                  <option key={state} value={state}>
+                    {state}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <Link href="/" className="radar-back-home-link">
+              Voltar para o Orceu
+            </Link>
+          </div>
         </div>
       </nav>
       <script dangerouslySetInnerHTML={{ __html: radarStateSelectorScript }} />
