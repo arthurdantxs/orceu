@@ -69,7 +69,6 @@ const RADAR_STATE_SELECTOR_SCRIPT = `<script>
     window.localStorage.setItem(storageKey, value);
     selectors.forEach((selector) => {
       selector.value = value;
-      selector.dataset.detected = "true";
     });
   }
 
