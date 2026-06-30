@@ -101,41 +101,41 @@ export default async function Home() {
           >
             FECHAR
           </button>
-          <div className="mind-modal-logo" aria-label="Orceu Mind">
-            <img src="/assets/logo-orceu.svg" alt="" aria-hidden="true" />
-            <span>MIND</span>
-          </div>
-          <p className="mind-modal-eyebrow">ORCEU MIND</p>
+          <img
+            className="mind-modal-head"
+            src="/assets/orceu-mind-head.webp"
+            alt="Orceu Mind. O mastermind mais exclusivo da construção civil."
+          />
           <h2 className="mind-modal-title" id="mind-modal-title">
             O MASTERMIND MAIS EXCLUSIVO DA CONSTRUÇÃO CIVIL.
           </h2>
-          <div className="mind-modal-copy">
-            <p>
+          <div className="mind-modal-content">
+            <p className="mind-modal-lead">
               O ORCEU MIND REÚNE DONOS DE CONSTRUTORA, ENGENHEIROS E
               ARQUITETOS QUE JÁ SAÍRAM DA OBRA CAOS E OPERAM NUM OUTRO NÍVEL.
               UM AMBIENTE FECHADO, ONDE DECISÃO SE ACELERA, EXPERIÊNCIA REAL SE
               TROCA E CADA MEMBRO CRESCE CERCADO DE GENTE QUE JOGA O MESMO JOGO.
             </p>
-            <p>AQUI DENTRO VOCÊ ENCONTRA:</p>
-            <ul>
-              <li>
+            <p className="mind-modal-kicker">AQUI DENTRO VOCÊ ENCONTRA:</p>
+            <div className="mind-modal-benefits">
+              <p>
                 NETWORKING QUALIFICADO COM QUEM JÁ CONSTRUIU OPERAÇÃO
                 PREVISÍVEL E LUCRATIVA
-              </li>
-              <li>
+              </p>
+              <p>
                 TROCA DIRETA DE EXPERIÊNCIA SOBRE GESTÃO, PROCESSOS, PESSOAS E
                 CRESCIMENTO
-              </li>
-              <li>
+              </p>
+              <p>
                 ACESSO A DISCUSSÕES ESTRATÉGICAS QUE NÃO ACONTECEM EM NENHUM
                 OUTRO LUGAR DO SETOR
-              </li>
-              <li>
+              </p>
+              <p>
                 UM CÍRCULO DE CONFIANÇA PARA DESTRAVAR AS DECISÕES MAIS
                 DIFÍCEIS DO SEU NEGÓCIO
-              </li>
-            </ul>
-            <p>
+              </p>
+            </div>
+            <p className="mind-modal-access">
               O MIND NÃO ESTÁ ABERTO AO PÚBLICO. O ACESSO É EXCLUSIVO PARA
               QUEM PASSOU PELA IMERSÃO DO ORCEU EMPRESARIAL E PROVOU QUE ESTÁ
               PRONTO PARA ESSE NÍVEL.
@@ -144,7 +144,12 @@ export default async function Home() {
           <p className="mind-modal-note">
             A PORTA DE ENTRADA PARA O ORCEU MIND.
           </p>
-          <a className="mind-modal-cta" href="#solucoes-empresarial">
+          <a
+            className="mind-modal-cta"
+            href="https://www.orceuempresarial.com.br/"
+            target="_blank"
+            rel="noreferrer"
+          >
             CONHECER O ORCEU EMPRESARIAL
           </a>
         </section>
