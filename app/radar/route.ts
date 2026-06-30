@@ -1,6 +1,8 @@
 import path from "node:path";
 import { readFile } from "node:fs/promises";
 import { gunzipSync } from "node:zlib";
+import { getRadarCategories, radarArticles } from "@/lib/radar-news";
+import { getSiteUrl } from "@/lib/site-config";
 
 const RADAR_HTML_PATH = path.join(process.cwd(), "radar", "index.html");
 
@@ -41,13 +43,14 @@ const MASTHEAD_BRAND_HTML = `<div onclick="{{ goHome }}" style="cursor:pointer;l
         <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#5B72B8;margin-top:8px;font-weight:600">Radar da construcao civil com metodo</div>
       </div>`;
 
-const MASTHEAD_BRAND_FIXED_HTML = `<div onclick="{{ goHome }}" style="cursor:pointer;line-height:1">
-        <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
-          <span style="font-family:'Axiforma',sans-serif;font-weight:800;font-size:18px;letter-spacing:.38em;text-transform:uppercase;color:#FAF7F1;padding-top:6px">RADAR</span>
-          <img src="/assets/logo-orceu.svg" alt="Orceu" style="height:52px;width:auto;display:block;flex:0 0 auto">
+const MASTHEAD_BRAND_FIXED_HTML = `<div style="display:flex;align-items:center;justify-content:flex-start;width:100%">
+        <div onclick="{{ goHome }}" style="cursor:pointer;display:flex;align-items:center;min-width:0;line-height:1">
+          <img src="/assets/radar/orceu-radar.svg" alt="Orceu Radar" style="height:42px;width:auto;display:block;flex:0 0 auto;max-width:min(100%,380px)">
         </div>
-        <div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#C9D9FF;margin-top:14px;font-weight:600">O RADAR OFICIAL DA CONSTRUÇÃO CIVIL</div>
       </div>`;
+
+
+
 
 const ARTICLE_META_HTML = `<div style="display:flex;align-items:center;gap:14px;padding:16px 0;border-top:1px solid #E7E2D8;border-bottom:1px solid #E7E2D8;margin-bottom:26px">
           <div style="width:44px;height:44px;border-radius:50%;background:#2146AD;color:#2146AD;display:flex;align-items:center;justify-content:center;font-family:'Axiforma',serif;font-weight:700;font-size:19px;flex-shrink:0">{{ sel.author }}</div>
@@ -158,7 +161,42 @@ async function getRainForecastLabel() {
 }
 
 function customizeExpandedRadarDocument(html: string, rainForecastLabel: string) {
+  const siteUrl = getSiteUrl();
+  const websiteJsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Radar Orceu",
+    url: `${siteUrl}/radar`,
+    description:
+      "Notícias, análises e tendências sobre construção civil, tecnologia, gestão, sustentabilidade e economia.",
+    inLanguage: "pt-BR",
+  });
+  const itemListJsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Radar Orceu | Notícias da Construção Civil",
+    url: `${siteUrl}/radar`,
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: radarArticles.map((article, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: `${siteUrl}/radar/${article.id}`,
+        name: article.title,
+      })),
+    },
+    hasPart: getRadarCategories().map((category) => ({
+      "@type": "CollectionPage",
+      name: category.name,
+      url: `${siteUrl}/radar/categoria/${category.slug}`,
+    })),
+  });
+
   return html
+    .replace(
+      "<head>",
+      `<head><title>Radar Orceu | Notícias da Construção Civil</title><meta name="description" content="Acompanhe no Radar Orceu as principais notícias, tendências e análises sobre gestão, tecnologia, sustentabilidade e economia da construção civil."><link rel="canonical" href="${siteUrl}/radar"><link rel="alternate" type="application/rss+xml" title="Radar Orceu RSS" href="${siteUrl}/radar/feed.xml"><meta property="og:type" content="website"><meta property="og:title" content="Radar Orceu | Notícias da Construção Civil"><meta property="og:description" content="Acompanhe no Radar Orceu as principais notícias, tendências e análises sobre gestão, tecnologia, sustentabilidade e economia da construção civil."><meta property="og:url" content="${siteUrl}/radar"><meta property="og:site_name" content="Radar Orceu"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Radar Orceu | Notícias da Construção Civil"><meta name="twitter:description" content="Acompanhe no Radar Orceu as principais notícias, tendências e análises sobre gestão, tecnologia, sustentabilidade e economia da construção civil."><script type="application/ld+json">${websiteJsonLd}</script><script type="application/ld+json">${itemListJsonLd}</script>`,
+    )
     .replace(UTILITY_BAR_HTML, "\n")
     .replace(MASTHEAD_BRAND_HTML, MASTHEAD_BRAND_FIXED_HTML)
     .replace(ARTICLE_META_HTML, ARTICLE_META_FIXED_HTML)
@@ -185,6 +223,14 @@ function customizeExpandedRadarDocument(html: string, rainForecastLabel: string)
       </div>`,
     )
     .replace(NEWSLETTER_HTML, NEWSLETTER_FIXED_HTML)
+    .replace(
+      '<sc-for list=\"{{ radar }}\" as=\"r\" hint-placeholder-count=\"5\">\n          <div style=\"display:flex;flex-direction:column;justify-content:center;gap:3px;padding:0 22px;border-left:1px solid #ECE7DD;flex-shrink:0\">\n            <span style=\"font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#9A8C7C\">{{ r.label }}<\/span>\n            <div style=\"display:flex;align-items:baseline;gap:8px;margin-top:-2px\">\n              <span style=\"font-size:16px;font-weight:800;color:#2146AD;font-variant-numeric:tabular-nums;letter-spacing:-.01em\">{{ r.value }}<\/span>\n              <span style=\"font-size:11px;font-weight:700;color:{{ r.color }};white-space:nowrap\">{{ r.delta }}<\/span>\n            <\/div>\n          <\/div>\n        <\/sc-for>',
+      '<sc-for list=\"{{ radar }}\" as=\"r\" hint-placeholder-count=\"5\">\n          <div style=\"display:flex;flex-direction:column;justify-content:center;gap:0;padding:0 16px;border-left:1px solid #ECE7DD;flex-shrink:0\">\n            <div style=\"display:flex;align-items:center;gap:8px;white-space:nowrap;line-height:.82;margin-bottom:-14px\">\n              <span style=\"font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#9A8C7C\">{{ r.label }}<\/span>\n              <span style=\"font-size:10.5px;font-weight:800;color:{{ r.color }};white-space:nowrap;line-height:.82\">{{ r.delta }}<\/span>\n            <\/div>\n            <div style=\"display:flex;align-items:baseline;gap:8px;margin-top:-10px;line-height:0.84\">\n              <span style=\"font-size:16px;font-weight:800;color:#2146AD;font-variant-numeric:tabular-nums;letter-spacing:-.01em\">{{ r.value }}<\/span>\n            <\/div>\n          <\/div>\n        <\/sc-for>',
+    )
+    .replace(
+      '<div style="display:flex;align-items:center;gap:10px;padding-right:24px;flex-shrink:0">',
+      '<div style="display:flex;align-items:center;gap:10px;padding-right:24px;flex-shrink:0;margin-left:-12px">',
+    )
     .replace(
       'background:#2146AD;color:#2146AD;font-weight:800;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;padding:9px 18px;display:flex;align-items:center;white-space:nowrap;flex-shrink:0',
       "background:#2146AD;color:#FAF7F1;font-weight:800;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;padding:9px 18px;display:flex;align-items:center;white-space:nowrap;flex-shrink:0",
@@ -239,7 +285,7 @@ function customizeExpandedRadarDocument(html: string, rainForecastLabel: string)
     )
     .replace(
       'style="max-width:1240px;margin:0 auto;padding:26px 24px 22px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px"',
-      'style="max-width:1240px;margin:0 auto;padding:26px 24px 22px;display:flex;align-items:flex-end;justify-content:flex-start;gap:24px"',
+      'style="max-width:1240px;margin:0 auto;padding:26px 24px 22px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px"',
     )
     .replace(
       'class="eco-band" style="margin-top:14px;background:#2146AD;border-radius:5px;padding:36px 40px;color:#FAF7F1"',
@@ -253,6 +299,10 @@ function customizeExpandedRadarDocument(html: string, rainForecastLabel: string)
       "font-family:'Axiforma',serif;font-weight:700;font-size:21px;line-height:1.14;margin:0 0 8px;color:#FAF7F1",
       "font-family:'Axiforma',serif;font-weight:700;font-size:21px;line-height:1.14;margin:0 0 8px;color:#2146AD",
     )
+    .replace(
+      `radar: [\n        { label: 'INCC', value: '0,48%', delta: '▲ +0,06 p.p.', color: '#2146AD' },\n        { label: 'CUB / m²', value: 'R$ 2.847', delta: '▲ +0,7%', color: '#2146AD' },\n        { label: 'Aço', value: 'R$ 5,12/kg', delta: '▼ −0,3%', color: '#2146AD' },\n        { label: 'Cimento', value: 'R$ 38,90', delta: '▲ +1,2%', color: '#2146AD' },\n        { label: 'Selic', value: '9,75%', delta: '— estável', color: '#5B72B8' }\n      ],`,
+      `radar: [\n        { label: 'INCC', value: '0,48%', delta: '▲ +0,06', color: '#2F6B3D' },\n        { label: 'CUB / m²', value: 'R$ 2.847', delta: '▲ +0,7%', color: '#2F6B3D' },\n        { label: 'Aço', value: 'R$ 5,12/kg', delta: '▼ −0,3%', color: '#8B2E2E' },\n        { label: 'Cimento', value: 'R$ 38,90', delta: '▲ +1,2%', color: '#2F6B3D' },\n        { label: 'Selic', value: '9,75%', delta: '', color: '#6B7280' }\n      ],`,
+    )
     .replace(/<div class="mh-search"[\s\S]*?<\/div>\s*<\/div>\s*<\/header>/, "</div>\n  </header>")
     .replaceAll("#FF6A1A", RADAR_LIGHT_BLUE)
     .replaceAll("#D9530A", RADAR_LIGHT_BLUE)
@@ -261,7 +311,11 @@ function customizeExpandedRadarDocument(html: string, rainForecastLabel: string)
     .replaceAll("#A89D8C", RADAR_TEXT_GRAY)
     .replaceAll("#5A5349", RADAR_TEXT_GRAY)
     .replaceAll("#B5AD9F", RADAR_TEXT_GRAY)
-    .replaceAll("#9A9183", RADAR_TEXT_GRAY);
+    .replaceAll("#9A9183", RADAR_TEXT_GRAY)
+    .replace(
+      "  open(id) {\n    this.setState({ view: 'article', selId: id });\n    if (typeof window !== 'undefined') window.scrollTo({ top: 0 });\n  }\n  goHome() {\n    this.setState({ view: 'home' });\n    if (typeof window !== 'undefined') window.scrollTo({ top: 0 });\n  }\n",
+      "  open(id) {\n    if (typeof window !== 'undefined') window.location.href = '/radar/' + id;\n  }\n  goHome() {\n    if (typeof window !== 'undefined') window.location.href = '/radar';\n  }\n",
+    );
 }
 
 export async function GET() {
