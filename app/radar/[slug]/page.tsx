@@ -271,13 +271,13 @@ const pageStyles = `
     justify-content: center;
     height: 22px;
     margin-left: 6px;
-    padding: 0 10px;
+    padding: 0 11px;
     border-radius: 999px;
     background: rgba(255,255,255,.08);
     color: #eef3ff;
-    font-size: 9px;
+    font-size: 8.8px;
     font-weight: 700;
-    letter-spacing: .04em;
+    letter-spacing: .035em;
     line-height: 1;
     text-decoration: none;
     text-transform: uppercase;
@@ -285,9 +285,13 @@ const pageStyles = `
   }
 
   .radar-back-home-link::before {
-    content: "←";
+    content: "";
     margin-right: 5px;
-    font-size: 10px;
+    width: 5px;
+    height: 5px;
+    border-left: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg);
     line-height: 1;
   }
 
@@ -1164,8 +1168,8 @@ export default async function RadarArticlePage({ params }: ArticlePageProps) {
               ))}
             </select>
           </label>
-          <Link href="/" className="radar-back-home-link" aria-label="Voltar para o Orceu">
-            Orceu
+          <Link href="/" className="radar-back-home-link">
+            Voltar para o Orceu
           </Link>
         </div>
       </nav>
