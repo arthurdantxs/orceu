@@ -7,6 +7,9 @@ import { getSiteUrl } from "@/lib/site-config";
 
 const RADAR_HTML_PATH = path.join(process.cwd(), "radar", "index.html");
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 type BundledAsset = {
   compressed: boolean;
   data: string;
@@ -454,10 +457,12 @@ export async function GET() {
   const html = await readFile(RADAR_HTML_PATH, "utf8");
   const expandedHtml = expandBundledRadarDocument(html);
   const customizedHtml = customizeExpandedRadarDocument(expandedHtml);
+  const responseBody = Buffer.from(customizedHtml || expandedHtml || html, "utf8");
 
-  return new Response(customizedHtml, {
+  return new Response(responseBody, {
     headers: {
       "content-type": "text/html; charset=utf-8",
+      "content-length": String(responseBody.byteLength),
     },
   });
 }
