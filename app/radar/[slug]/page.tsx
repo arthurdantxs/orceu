@@ -265,6 +265,25 @@ const pageStyles = `
     flex: 0 0 auto;
   }
 
+  .radar-back-home-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 22px;
+    margin-left: 8px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.08);
+    color: #eef3ff;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    line-height: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
   .radar-state-select {
     appearance: none;
     width: 46px;
@@ -1138,6 +1157,9 @@ export default async function RadarArticlePage({ params }: ArticlePageProps) {
               ))}
             </select>
           </label>
+          <Link href="/" className="radar-back-home-link">
+            Voltar para o Orceu
+          </Link>
         </div>
       </nav>
       <script dangerouslySetInnerHTML={{ __html: radarStateSelectorScript }} />
