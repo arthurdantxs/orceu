@@ -260,30 +260,33 @@ const pageStyles = `
   .radar-state-select-wrap {
     display: flex;
     align-items: center;
-    padding: 0 0 0 14px;
-    margin-left: 8px;
+    padding: 0 0 0 10px;
+    margin-left: 4px;
     border-left: 1px solid rgba(255,255,255,.12);
     flex: 0 0 auto;
   }
 
   .radar-state-select {
     appearance: none;
-    border: 1px solid rgba(255,255,255,.18);
+    width: 58px;
+    height: 27px;
+    border: 1px solid rgba(255,255,255,.16);
     border-radius: 999px;
-    background: rgba(255,255,255,.06);
+    background-color: rgba(255,255,255,.045);
     color: #eef3ff;
     cursor: pointer;
     font-family: Axiforma, sans-serif;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: .08em;
+    letter-spacing: .04em;
     line-height: 1;
-    padding: 8px 26px 8px 11px;
+    padding: 0 20px 0 10px;
     text-transform: uppercase;
     background-image: linear-gradient(45deg, transparent 50%, #eef3ff 50%), linear-gradient(135deg, #eef3ff 50%, transparent 50%);
-    background-position: calc(100% - 13px) 50%, calc(100% - 9px) 50%;
-    background-size: 4px 4px, 4px 4px;
+    background-position: calc(100% - 12px) 50%, calc(100% - 8px) 50%;
+    background-size: 3.5px 3.5px, 3.5px 3.5px;
     background-repeat: no-repeat;
+    text-align: left;
   }
 
   .radar-state-select option {
