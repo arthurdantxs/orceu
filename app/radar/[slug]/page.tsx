@@ -9,6 +9,7 @@ import {
   radarArticles,
   slugifyRadarCategory,
 } from "@/lib/radar-news";
+import { radarDaObraClientScript } from "@/lib/radar-da-obra-client";
 import { getSiteUrl } from "@/lib/site-config";
 
 type ArticlePageProps = {
@@ -113,6 +114,7 @@ const radarStateSelectorScript = `
     selectors.forEach((selector) => {
       selector.value = value;
     });
+    window.dispatchEvent(new CustomEvent("radar-state-change", { detail: { uf: value } }));
   }
 
   const storedState = window.localStorage.getItem(storageKey);
@@ -1216,6 +1218,7 @@ export default async function RadarArticlePage({ params }: ArticlePageProps) {
         </div>
       </nav>
       <script dangerouslySetInnerHTML={{ __html: radarStateSelectorScript }} />
+      <script dangerouslySetInnerHTML={{ __html: radarDaObraClientScript }} />
 
       <div className="radar-home-indicators">
         <div className="radar-home-indicators-inner">
@@ -1228,12 +1231,23 @@ export default async function RadarArticlePage({ params }: ArticlePageProps) {
 
           <div className="radar-home-metrics">
             {RADAR_METRICS.map((metric) => (
-              <div key={metric.label} className="radar-home-indicator">
+              <div
+                key={metric.label}
+                className="radar-home-indicator"
+                data-radar-indicator={metric.label.toLowerCase() === "selic" ? "selic" : undefined}
+              >
                 <div className="radar-home-indicator-top">
                   <strong>{metric.label}</strong>
                 </div>
                 <div className="radar-home-indicator-bottom">
-                  <div className="radar-home-indicator-value">{metric.value}</div>
+                  <div
+                    className="radar-home-indicator-value"
+                    data-radar-indicator-value={
+                      metric.label.toLowerCase() === "selic" ? "selic" : undefined
+                    }
+                  >
+                    {metric.value}
+                  </div>
                   {metric.delta ? (
                     <span className={`radar-home-indicator-delta ${metric.tone}`}>
                       {metric.delta}
@@ -1243,15 +1257,19 @@ export default async function RadarArticlePage({ params }: ArticlePageProps) {
               </div>
             ))}
 
-            <div className="radar-home-weather">
-              <div style={{ fontSize: 20, lineHeight: 1 }} aria-hidden="true">
+            <div className="radar-home-weather" data-radar-weather>
+              <div
+                style={{ fontSize: 20, lineHeight: 1 }}
+                aria-hidden="true"
+                data-radar-weather-icon
+              >
                 ☀️
               </div>
               <div className="radar-home-weather-copy">
                 <strong>Clima de obra</strong>
                 <div className="radar-home-weather-bottom">
-                  <span>28°</span>
-                  <span>Favorável</span>
+                  <span data-radar-weather-temp>28°</span>
+                  <span data-radar-weather-status-label>Favorável</span>
                 </div>
               </div>
             </div>

@@ -2,6 +2,7 @@ import path from "node:path";
 import { readFile } from "node:fs/promises";
 import { gunzipSync } from "node:zlib";
 import { getRadarCategories, radarArticles } from "@/lib/radar-news";
+import { radarDaObraClientScript } from "@/lib/radar-da-obra-client";
 import { getSiteUrl } from "@/lib/site-config";
 
 const RADAR_HTML_PATH = path.join(process.cwd(), "radar", "index.html");
@@ -73,6 +74,7 @@ const RADAR_STATE_SELECTOR_SCRIPT = `<script>
     selectors.forEach((selector) => {
       selector.value = value;
     });
+    window.dispatchEvent(new CustomEvent("radar-state-change", { detail: { uf: value } }));
   }
 
   const storedState = window.localStorage.getItem(storageKey);
@@ -442,7 +444,10 @@ function customizeExpandedRadarDocument(html: string) {
       "  open(id) {\n    this.setState({ view: 'article', selId: id });\n    if (typeof window !== 'undefined') window.scrollTo({ top: 0 });\n  }\n  goHome() {\n    this.setState({ view: 'home' });\n    if (typeof window !== 'undefined') window.scrollTo({ top: 0 });\n  }\n",
       "  open(id) {\n    if (typeof window !== 'undefined') window.location.href = '/radar/' + id;\n  }\n  goHome() {\n    if (typeof window !== 'undefined') window.location.href = '/radar';\n  }\n",
     )
-    .replace("</body>", `<style>${RADAR_STATE_SELECTOR_STYLES}</style>${RADAR_STATE_SELECTOR_SCRIPT}</body>`);
+    .replace(
+      "</body>",
+      `<style>${RADAR_STATE_SELECTOR_STYLES}</style>${RADAR_STATE_SELECTOR_SCRIPT}<script>${radarDaObraClientScript}</script></body>`,
+    );
 }
 
 export async function GET() {
