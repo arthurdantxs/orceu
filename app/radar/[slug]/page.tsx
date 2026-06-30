@@ -263,25 +263,28 @@ const pageStyles = `
     margin-left: 0;
     border-left: 1px solid rgba(255,255,255,.12);
     flex: 0 0 auto;
+    height: 100%;
   }
 
   .radar-back-home-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 22px;
+    height: 22px !important;
     margin-left: 6px;
     padding: 0 11px;
     border-radius: 999px;
     background: rgba(255,255,255,.08);
-    color: #eef3ff;
-    font-size: 8.8px;
+    color: #eef3ff !important;
+    font-size: 8.8px !important;
     font-weight: 700;
     letter-spacing: .035em;
     line-height: 1;
     text-decoration: none;
     text-transform: uppercase;
     white-space: nowrap;
+    flex: 0 0 auto;
+    align-self: center;
   }
 
   .radar-back-home-link::before {
@@ -297,15 +300,15 @@ const pageStyles = `
 
   .radar-state-select {
     appearance: none;
-    width: 46px;
-    height: 22px;
+    width: 46px !important;
+    height: 22px !important;
     border: 0;
     border-radius: 999px;
     background-color: rgba(255,255,255,.08);
     color: #eef3ff;
     cursor: pointer;
     font-family: Axiforma, sans-serif;
-    font-size: 9.5px;
+    font-size: 9.5px !important;
     font-weight: 700;
     letter-spacing: .04em;
     line-height: 1;
@@ -321,6 +324,12 @@ const pageStyles = `
   .radar-state-select option {
     color: #2146ad;
     background: #ffffff;
+  }
+
+  .radar-home-nav .radar-back-home-link,
+  .radar-home-nav .radar-state-select-wrap {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 
   .radar-home-indicators {
