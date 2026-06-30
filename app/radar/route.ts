@@ -15,6 +15,94 @@ type BundledAsset = {
 const RADAR_LIGHT_BLUE = "#C9D9FF";
 const RADAR_TEXT_GRAY = "#8E95A5";
 const RADAR_PANEL_BLUE = "#EAF2FF";
+const BRAZIL_STATES = [
+  "AC",
+  "AL",
+  "AP",
+  "AM",
+  "BA",
+  "CE",
+  "DF",
+  "ES",
+  "GO",
+  "MA",
+  "MT",
+  "MS",
+  "MG",
+  "PA",
+  "PB",
+  "PR",
+  "PE",
+  "PI",
+  "RJ",
+  "RN",
+  "RS",
+  "RO",
+  "RR",
+  "SC",
+  "SP",
+  "SE",
+  "TO",
+];
+
+const RADAR_STATE_SELECTOR_HTML = `<label class="radar-state-select-wrap" aria-label="Selecionar estado">
+        <select class="radar-state-select" data-radar-state-select title="Selecionar estado">
+          <option value="" selected disabled>UF</option>
+          ${BRAZIL_STATES.map(
+            (state) => `<option value="${state}">${state}</option>`,
+          ).join("")}
+        </select>
+      </label>`;
+
+const RADAR_STATE_SELECTOR_STYLES = `.radar-state-select-wrap{display:flex;align-items:center;padding:0 0 0 14px;margin-left:8px;border-left:1px solid rgba(255,255,255,.12);flex:0 0 auto}.radar-state-select{appearance:none;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.06);color:#eef3ff;cursor:pointer;font-family:'Axiforma',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;line-height:1;padding:8px 26px 8px 11px;text-transform:uppercase;background-image:linear-gradient(45deg,transparent 50%,#eef3ff 50%),linear-gradient(135deg,#eef3ff 50%,transparent 50%);background-position:calc(100% - 13px) 50%,calc(100% - 9px) 50%;background-size:4px 4px,4px 4px;background-repeat:no-repeat}.radar-state-select option{color:#2146ad;background:#fff}`;
+
+const RADAR_STATE_SELECTOR_SCRIPT = `<script>
+(() => {
+  const validStates = new Set(${JSON.stringify(BRAZIL_STATES)});
+  const storageKey = "orceu-radar-uf";
+  const selectors = Array.from(document.querySelectorAll("[data-radar-state-select]"));
+
+  if (!selectors.length) return;
+
+  function applyState(value) {
+    if (!validStates.has(value)) return;
+    window.localStorage.setItem(storageKey, value);
+    selectors.forEach((selector) => {
+      selector.value = value;
+      selector.dataset.detected = "true";
+    });
+  }
+
+  const storedState = window.localStorage.getItem(storageKey);
+  if (storedState && validStates.has(storedState)) applyState(storedState);
+
+  selectors.forEach((selector) => {
+    selector.addEventListener("change", () => {
+      const value = selector.value;
+      if (validStates.has(value)) applyState(value);
+    });
+  });
+
+  if (storedState && validStates.has(storedState)) return;
+
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 1800);
+
+  fetch("https://ipapi.co/json/", {
+    signal: controller.signal,
+    cache: "no-store",
+  })
+    .then((response) => (response.ok ? response.json() : null))
+    .then((data) => {
+      const regionCode = String(data?.region_code ?? "").toUpperCase();
+      if (data?.country_code === "BR" && validStates.has(regionCode)) {
+        applyState(regionCode);
+      }
+    })
+    .catch(() => {})
+    .finally(() => window.clearTimeout(timeout));
+})();
+</script>`;
 
 const UTILITY_BAR_HTML = `<!-- Utility bar -->
   <div style="background:#2146AD;color:#EAF0FF;border-bottom:1px solid rgba(33,70,173,.18)">
@@ -162,7 +250,7 @@ function customizeExpandedRadarDocument(html: string) {
   return html
     .replace(
       "<head>",
-      `<head><title>Radar Orceu | Notícias da Construção Civil</title><meta name="description" content="Acompanhe no Radar Orceu as principais notícias, tendências e análises sobre gestão, tecnologia, sustentabilidade e economia da construção civil."><link rel="canonical" href="${siteUrl}/radar"><link rel="alternate" type="application/rss+xml" title="Radar Orceu RSS" href="${siteUrl}/radar/feed.xml"><meta property="og:type" content="website"><meta property="og:title" content="Radar Orceu | Notícias da Construção Civil"><meta property="og:description" content="Acompanhe no Radar Orceu as principais notícias, tendências e análises sobre gestão, tecnologia, sustentabilidade e economia da construção civil."><meta property="og:url" content="${siteUrl}/radar"><meta property="og:site_name" content="Radar Orceu"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Radar Orceu | Notícias da Construção Civil"><meta name="twitter:description" content="Acompanhe no Radar Orceu as principais notícias, tendências e análises sobre gestão, tecnologia, sustentabilidade e economia da construção civil."><script type="application/ld+json">${websiteJsonLd}</script><script type="application/ld+json">${itemListJsonLd}</script><style>.mh-inner{overflow:hidden}.mh-inner img{max-width:100%!important}.cat-inner{justify-content:flex-start!important}.cat-inner a{justify-content:flex-start!important;background:transparent!important}.cat-inner a span{display:inline-block;transition:transform .22s ease;transform-origin:center}.cat-inner a:hover{background:transparent!important;color:#EAF0FF!important}.cat-inner a:hover span{transform:scale(1.08)}.cat-inner a:first-child{padding-left:0!important}.radar-eyebrow{display:block;width:max-content;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:#000!important;font-family:'Axiforma',sans-serif!important;font-weight:400!important;text-transform:uppercase;line-height:1.1;padding:0!important}.radar-eyebrow-lead{font-size:12px;letter-spacing:.1em;margin:18px 0 10px}.radar-eyebrow-small{font-size:11px;letter-spacing:.1em;margin-bottom:7px}.radar-eyebrow-compact{font-size:10px;letter-spacing:.1em;margin-bottom:7px}@media (max-width:680px){.mh-inner{padding-left:16px!important;padding-right:16px!important}.cat-inner{padding-left:16px!important;padding-right:16px!important}.cat-inner a:first-child{padding-left:0!important}}</style>`,
+      `<head><title>Radar Orceu | Notícias da Construção Civil</title><meta name="description" content="Acompanhe no Radar Orceu as principais notícias, tendências e análises sobre gestão, tecnologia, sustentabilidade e economia da construção civil."><link rel="canonical" href="${siteUrl}/radar"><link rel="alternate" type="application/rss+xml" title="Radar Orceu RSS" href="${siteUrl}/radar/feed.xml"><meta property="og:type" content="website"><meta property="og:title" content="Radar Orceu | Notícias da Construção Civil"><meta property="og:description" content="Acompanhe no Radar Orceu as principais notícias, tendências e análises sobre gestão, tecnologia, sustentabilidade e economia da construção civil."><meta property="og:url" content="${siteUrl}/radar"><meta property="og:site_name" content="Radar Orceu"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Radar Orceu | Notícias da Construção Civil"><meta name="twitter:description" content="Acompanhe no Radar Orceu as principais notícias, tendências e análises sobre gestão, tecnologia, sustentabilidade e economia da construção civil."><script type="application/ld+json">${websiteJsonLd}</script><script type="application/ld+json">${itemListJsonLd}</script><style>.mh-inner{overflow:hidden}.mh-inner img{max-width:100%!important}.cat-inner{justify-content:flex-start!important}.cat-inner a{justify-content:flex-start!important;background:transparent!important}.cat-inner a span{display:inline-block;transition:transform .22s ease;transform-origin:center}.cat-inner a:hover{background:transparent!important;color:#EAF0FF!important}.cat-inner a:hover span{transform:scale(1.08)}.cat-inner a:first-child{padding-left:0!important}.radar-eyebrow{display:block;width:max-content;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:#000!important;font-family:'Axiforma',sans-serif!important;font-weight:400!important;text-transform:uppercase;line-height:1.1;padding:0!important}.radar-eyebrow-lead{font-size:12px;letter-spacing:.1em;margin:18px 0 10px}.radar-eyebrow-small{font-size:11px;letter-spacing:.1em;margin-bottom:7px}.radar-eyebrow-compact{font-size:10px;letter-spacing:.1em;margin-bottom:7px}${RADAR_STATE_SELECTOR_STYLES}@media (max-width:680px){.mh-inner{padding-left:16px!important;padding-right:16px!important}.cat-inner{padding-left:16px!important;padding-right:16px!important}.cat-inner a:first-child{padding-left:0!important}}</style>`,
     )
     .replaceAll(
       "background:linear-gradient(180deg,#eef4ff 0%,#f8fbff 22%,#ffffff 100%)",
@@ -216,6 +304,15 @@ function customizeExpandedRadarDocument(html: string) {
     .replace(
       '<a href="#" style="font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#EAF0FF;text-decoration:none;padding:14px 18px;border-right:1px solid rgba(255,255,255,.07);white-space:nowrap;display:flex;align-items:center" style-hover="color:#2146AD;background:rgba(255,255,255,.03)">{{ cat.name }}</a>',
       '<a href="#" style="font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#EAF0FF;text-decoration:none;padding:14px 18px;border-right:1px solid rgba(255,255,255,.07);white-space:nowrap;display:flex;align-items:center;background:transparent"><span>{{ cat.name }}</span></a>',
+    )
+    .replace(
+      `      </sc-for>
+    </div>
+  </nav>`,
+      `      </sc-for>
+      ${RADAR_STATE_SELECTOR_HTML}
+    </div>
+  </nav>`,
     )
     .replace(
       '<section class="hero-grid" style="display:grid;grid-template-columns:1.95fr 1fr;gap:34px;padding-bottom:34px;border-bottom:1px solid #E7E2D8">',
@@ -341,7 +438,8 @@ function customizeExpandedRadarDocument(html: string) {
     .replace(
       "  open(id) {\n    this.setState({ view: 'article', selId: id });\n    if (typeof window !== 'undefined') window.scrollTo({ top: 0 });\n  }\n  goHome() {\n    this.setState({ view: 'home' });\n    if (typeof window !== 'undefined') window.scrollTo({ top: 0 });\n  }\n",
       "  open(id) {\n    if (typeof window !== 'undefined') window.location.href = '/radar/' + id;\n  }\n  goHome() {\n    if (typeof window !== 'undefined') window.location.href = '/radar';\n  }\n",
-    );
+    )
+    .replace("</body>", `${RADAR_STATE_SELECTOR_SCRIPT}</body>`);
 }
 
 export async function GET() {

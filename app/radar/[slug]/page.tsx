@@ -69,6 +69,84 @@ const RADAR_TICKER = [
   "Demanda por orçamentistas dispara em capitais do Sudeste",
 ];
 
+const BRAZIL_STATES = [
+  "AC",
+  "AL",
+  "AP",
+  "AM",
+  "BA",
+  "CE",
+  "DF",
+  "ES",
+  "GO",
+  "MA",
+  "MT",
+  "MS",
+  "MG",
+  "PA",
+  "PB",
+  "PR",
+  "PE",
+  "PI",
+  "RJ",
+  "RN",
+  "RS",
+  "RO",
+  "RR",
+  "SC",
+  "SP",
+  "SE",
+  "TO",
+];
+
+const radarStateSelectorScript = `
+(() => {
+  const validStates = new Set(${JSON.stringify(BRAZIL_STATES)});
+  const storageKey = "orceu-radar-uf";
+  const selectors = Array.from(document.querySelectorAll("[data-radar-state-select]"));
+
+  if (!selectors.length) return;
+
+  function applyState(value) {
+    if (!validStates.has(value)) return;
+    window.localStorage.setItem(storageKey, value);
+    selectors.forEach((selector) => {
+      selector.value = value;
+      selector.dataset.detected = "true";
+    });
+  }
+
+  const storedState = window.localStorage.getItem(storageKey);
+  if (storedState && validStates.has(storedState)) applyState(storedState);
+
+  selectors.forEach((selector) => {
+    selector.addEventListener("change", () => {
+      const value = selector.value;
+      if (validStates.has(value)) applyState(value);
+    });
+  });
+
+  if (storedState && validStates.has(storedState)) return;
+
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 1800);
+
+  fetch("https://ipapi.co/json/", {
+    signal: controller.signal,
+    cache: "no-store",
+  })
+    .then((response) => (response.ok ? response.json() : null))
+    .then((data) => {
+      const regionCode = String(data?.region_code ?? "").toUpperCase();
+      if (data?.country_code === "BR" && validStates.has(regionCode)) {
+        applyState(regionCode);
+      }
+    })
+    .catch(() => {})
+    .finally(() => window.clearTimeout(timeout));
+})();
+`;
+
 const pageStyles = `
   .radar-article-shell {
     min-height: 100vh;
@@ -177,6 +255,40 @@ const pageStyles = `
 
   .radar-home-nav a.active {
     color: #ffffff;
+  }
+
+  .radar-state-select-wrap {
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 14px;
+    margin-left: 8px;
+    border-left: 1px solid rgba(255,255,255,.12);
+    flex: 0 0 auto;
+  }
+
+  .radar-state-select {
+    appearance: none;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 999px;
+    background: rgba(255,255,255,.06);
+    color: #eef3ff;
+    cursor: pointer;
+    font-family: Axiforma, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    line-height: 1;
+    padding: 8px 26px 8px 11px;
+    text-transform: uppercase;
+    background-image: linear-gradient(45deg, transparent 50%, #eef3ff 50%), linear-gradient(135deg, #eef3ff 50%, transparent 50%);
+    background-position: calc(100% - 13px) 50%, calc(100% - 9px) 50%;
+    background-size: 4px 4px, 4px 4px;
+    background-repeat: no-repeat;
+  }
+
+  .radar-state-select option {
+    color: #2146ad;
+    background: #ffffff;
   }
 
   .radar-home-indicators {
@@ -1007,8 +1119,26 @@ export default async function RadarArticlePage({ params }: ArticlePageProps) {
               <span>{category.name}</span>
             </Link>
           ))}
+          <label className="radar-state-select-wrap" aria-label="Selecionar estado">
+            <select
+              className="radar-state-select"
+              data-radar-state-select
+              defaultValue=""
+              title="Selecionar estado"
+            >
+              <option value="" disabled>
+                UF
+              </option>
+              {BRAZIL_STATES.map((state) => (
+                <option key={state} value={state}>
+                  {state}
+                </option>
+              ))}
+            </select>
+          </label>
         </div>
       </nav>
+      <script dangerouslySetInnerHTML={{ __html: radarStateSelectorScript }} />
 
       <div className="radar-home-indicators">
         <div className="radar-home-indicators-inner">
