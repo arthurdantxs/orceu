@@ -262,7 +262,7 @@ const pageStyles = `
     gap: 6px;
     margin-left: 8px;
     padding-left: 8px;
-    border-left: 1px solid rgba(255,255,255,.12);
+    border-left: 0;
     flex: 0 0 auto;
   }
 
