@@ -259,31 +259,31 @@ const pageStyles = `
   .radar-state-select-wrap {
     display: flex;
     align-items: center;
-    padding: 0 0 0 10px;
-    margin-left: 4px;
+    padding: 0 0 0 8px;
+    margin-left: 0;
     border-left: 1px solid rgba(255,255,255,.12);
     flex: 0 0 auto;
   }
 
   .radar-state-select {
     appearance: none;
-    width: 58px;
-    height: 27px;
-    border: 1px solid rgba(255,255,255,.16);
+    width: 46px;
+    height: 22px;
+    border: 0;
     border-radius: 999px;
-    background-color: rgba(255,255,255,.045);
+    background-color: rgba(255,255,255,.08);
     color: #eef3ff;
     cursor: pointer;
     font-family: Axiforma, sans-serif;
-    font-size: 10px;
+    font-size: 9.5px;
     font-weight: 700;
     letter-spacing: .04em;
     line-height: 1;
-    padding: 0 20px 0 10px;
+    padding: 0 15px 0 8px;
     text-transform: uppercase;
     background-image: linear-gradient(45deg, transparent 50%, #eef3ff 50%), linear-gradient(135deg, #eef3ff 50%, transparent 50%);
-    background-position: calc(100% - 12px) 50%, calc(100% - 8px) 50%;
-    background-size: 3.5px 3.5px, 3.5px 3.5px;
+    background-position: calc(100% - 9px) 50%, calc(100% - 6px) 50%;
+    background-size: 3px 3px, 3px 3px;
     background-repeat: no-repeat;
     text-align: left;
   }
