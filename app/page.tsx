@@ -111,26 +111,58 @@ export default async function Home() {
           </h2>
           <div className="mind-modal-content">
             <p className="mind-modal-lead">
-              O ORCEU MIND REÚNE DONOS DE CONSTRUTORA, ENGENHEIROS E
-              ARQUITETOS QUE JÁ SAÍRAM DA OBRA CAOS E OPERAM NUM OUTRO NÍVEL.
-              UM AMBIENTE FECHADO, ONDE DECISÃO SE ACELERA, EXPERIÊNCIA REAL SE
-              TROCA E CADA MEMBRO CRESCE CERCADO DE GENTE QUE JOGA O MESMO JOGO.
+              O ORCEU MIND REÚNE DONOS DE CONSTRUTORA, ENGENHEIROS E ARQUITETOS
+              QUE JÁ
+              <br />
+              SAÍRAM DA OBRA CAOS E OPERAM NUM OUTRO NÍVEL.
+              <br />
+              UM AMBIENTE FECHADO, ONDE DECISÃO SE ACELERA,
+              <br />
+              EXPERIÊNCIA REAL SE TROCA E CADA MEMBRO CRESCE
+              <br />
+              CERCADO DE GENTE QUE JOGA O MESMO JOGO.
             </p>
+            <div className="mind-modal-logo-marquee" aria-hidden="true">
+              <div className="mind-modal-logo-track">
+                <img src="/assets/logos%20minds0.svg" alt="" />
+                <img src="/assets/logos%20minds0.svg" alt="" />
+              </div>
+            </div>
             <p className="mind-modal-kicker">AQUI DENTRO VOCÊ ENCONTRA:</p>
             <div className="mind-modal-benefits">
               <p>
+                <span className="mind-benefit-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M7 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM7 22a5 5 0 0 0 5-5H2a5 5 0 0 0 5 5Zm10 0a5 5 0 0 0 5-5H12a5 5 0 0 0 5 5Zm-5-8 3-3-3-3-3 3 3 3Z" />
+                  </svg>
+                </span>
                 NETWORKING QUALIFICADO COM QUEM JÁ CONSTRUIU OPERAÇÃO
                 PREVISÍVEL E LUCRATIVA
               </p>
               <p>
+                <span className="mind-benefit-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M4 7h12l-3-3 1.8-1.8L21 8.5 14.8 15 13 13l3-3H4V7Zm16 10H8l3 3-1.8 1.8L3 15.5 9.2 9 11 11l-3 3h12v3Z" />
+                  </svg>
+                </span>
                 TROCA DIRETA DE EXPERIÊNCIA SOBRE GESTÃO, PROCESSOS, PESSOAS E
                 CRESCIMENTO
               </p>
               <p>
+                <span className="mind-benefit-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 2a10 10 0 1 0 10 10h-3a7 7 0 1 1-7-7V2Zm1 1v8h8a8 8 0 0 0-8-8Zm-1 13a4 4 0 0 0 4-4h-3a1 1 0 1 1-1-1V8a4 4 0 1 0 0 8Z" />
+                  </svg>
+                </span>
                 ACESSO A DISCUSSÕES ESTRATÉGICAS QUE NÃO ACONTECEM EM NENHUM
                 OUTRO LUGAR DO SETOR
               </p>
               <p>
+                <span className="mind-benefit-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M17 9V7A5 5 0 0 0 7 7v2H5v13h14V9h-2Zm-7 0V7a2 2 0 1 1 4 0v2h-4Zm3.5 7.7V19h-3v-2.3a2 2 0 1 1 3 0Z" />
+                  </svg>
+                </span>
                 UM CÍRCULO DE CONFIANÇA PARA DESTRAVAR AS DECISÕES MAIS
                 DIFÍCEIS DO SEU NEGÓCIO
               </p>
@@ -142,7 +174,7 @@ export default async function Home() {
             </p>
           </div>
           <p className="mind-modal-note">
-            A PORTA DE ENTRADA PARA O ORCEU MIND.
+            A PORTA DE ENTRADA PARA O ORCEU MIND:
           </p>
           <a
             className="mind-modal-cta"

@@ -2050,8 +2050,8 @@
 
     .mind-modal-content {
       display: grid;
-      gap: clamp(14px, 1.8vw, 18px);
-      max-width: 690px;
+      gap: clamp(12px, 1.55vw, 16px);
+      max-width: 710px;
       margin: 0 auto;
       color: rgba(255, 255, 255, 0.68);
       font-size: clamp(0.58rem, 0.72vw, 0.68rem);
@@ -2066,8 +2066,36 @@
     }
 
     .mind-modal-lead {
-      max-width: 650px;
+      max-width: 590px;
       margin: 0 auto;
+    }
+
+    .mind-modal-logo-marquee {
+      position: relative;
+      width: min(620px, 100%);
+      margin: 0 auto 2px;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+    }
+
+    .mind-modal-logo-track {
+      display: flex;
+      width: max-content;
+      opacity: 0.26;
+      animation: logoMarquee 28s linear infinite;
+      will-change: transform;
+    }
+
+    .mind-modal-logo-track img {
+      display: block;
+      flex: 0 0 auto;
+      width: auto;
+      height: clamp(18px, 1.7vw, 26px);
+      margin-right: 18px;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
     }
 
     .mind-modal-kicker {
@@ -2080,31 +2108,49 @@
     .mind-modal-benefits {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
+      gap: 8px;
       text-align: left;
     }
 
     .mind-modal-benefits p {
-      min-height: 82px;
-      padding: 16px 16px 14px;
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      gap: 11px;
+      align-items: center;
+      min-height: 58px;
+      padding: 12px 14px;
       color: rgba(255, 255, 255, 0.76);
       font-size: clamp(0.53rem, 0.68vw, 0.62rem);
       font-weight: 400;
-      line-height: 1.48;
+      line-height: 1.34;
       letter-spacing: 0.05em;
       background: rgba(255, 255, 255, 0.045);
       border: 1px solid rgba(255, 255, 255, 0.09);
-      border-radius: 18px;
+      border-radius: 16px;
+    }
+
+    .mind-benefit-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      color: rgba(255, 255, 255, 0.86);
+      background: rgba(255, 255, 255, 0.075);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+    }
+
+    .mind-benefit-icon svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
     }
 
     .mind-modal-access {
-      max-width: 620px;
+      max-width: 590px;
       margin: 0 auto;
-      padding: 14px 18px;
       color: rgba(255, 255, 255, 0.72);
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 999px;
     }
 
     .mind-modal-note {
@@ -2177,10 +2223,8 @@
       .mind-modal-benefits p {
         min-height: 0;
         text-align: center;
-      }
-
-      .mind-modal-access {
-        border-radius: 18px;
+        grid-template-columns: 1fr;
+        justify-items: center;
       }
     }
 
