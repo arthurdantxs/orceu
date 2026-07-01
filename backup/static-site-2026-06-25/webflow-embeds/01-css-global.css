@@ -759,6 +759,9 @@
       object-fit: cover;
       object-position: center center;
     }
+    .slide-2 .slide-hero-image {
+      object-position: 72% center;
+    }
     .slide-1 { --slide-bg: rgba(33, 70, 173, 0.45); }
     .slide-2 { --slide-bg: rgba(16, 19, 31, 0.6); }
     .slide-3 { --slide-bg: rgba(8, 113, 95, 0.45); }

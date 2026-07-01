@@ -758,6 +758,9 @@
     .slide-hero-image--main {
       object-position: center 42%;
     }
+    .slide-2 .slide-hero-image {
+      object-position: 72% center;
+    }
     .slide-1 {
       --slide-bg: #0b224f;
       --slide-overlay: linear-gradient(90deg, rgba(6, 22, 56, 0.18) 0%, rgba(6, 22, 56, 0.12) 38%, rgba(6, 22, 56, 0.03) 64%, rgba(6, 22, 56, 0.01) 100%);
