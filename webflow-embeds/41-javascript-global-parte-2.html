@@ -485,6 +485,8 @@ const quizModal = document.querySelector("#diagnostic-modal");
       const header = document.querySelector(".site-header");
       const toggle = document.querySelector(".mobile-nav-toggle");
       const nav = document.querySelector("#main-navigation");
+      const dropdownWrapper = header?.querySelector(".nav-dropdown-wrapper");
+      const dropdownTrigger = header?.querySelector(".nav-dropdown-trigger");
 
       if (!header || !toggle || !nav) return;
 
@@ -493,6 +495,10 @@ const quizModal = document.querySelector("#diagnostic-modal");
         document.body.classList.toggle("mobile-menu-lock", isOpen);
         toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
         toggle.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+        if (!isOpen && dropdownWrapper) {
+          dropdownWrapper.classList.remove("is-active");
+          dropdownTrigger?.setAttribute("aria-expanded", "false");
+        }
       };
 
       toggle.addEventListener("click", (event) => {
