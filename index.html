@@ -5763,13 +5763,14 @@
       }
 
       .slides::after {
-        right: 20px;
-        left: 20px;
+        right: 16px;
+        left: 16px;
+        z-index: 9;
+        background: rgba(255, 255, 255, 0.96);
       }
 
       .slide {
-        padding: 0 24px;
-        padding-bottom: 160px;
+        padding: 110px 22px 118px;
       }
 
       .eyebrow {
@@ -5789,7 +5790,9 @@
       }
 
       .hero-bottom {
-        padding: 0 20px 44px;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 0 16px 14px;
       }
 
       .hero-actions {
@@ -5805,9 +5808,27 @@
         border-radius: 14px;
       }
 
+      .slider-nav {
+        display: inline-flex;
+        gap: 8px;
+        padding: 6px 10px;
+        background: rgba(10, 18, 41, 0.54);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 999px;
+        -webkit-backdrop-filter: blur(14px);
+        backdrop-filter: blur(14px);
+      }
+
       .slider-arrow {
-        width: 36px;
-        height: 36px;
+        width: 28px;
+        height: 28px;
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.16);
+      }
+
+      .slider-arrow svg {
+        width: 12px;
+        height: 12px;
       }
 
       .ecosystem {
@@ -9424,13 +9445,15 @@
 
       .hero {
         min-height: 100svh;
+        max-height: 100svh;
       }
 
       .slide {
         align-items: flex-end;
+        padding-top: 112px;
         padding-right: var(--mobile-gutter);
         padding-left: var(--mobile-gutter);
-        padding-bottom: clamp(118px, 18vh, 150px);
+        padding-bottom: 94px;
       }
 
       .slide::before {
@@ -9483,7 +9506,7 @@
       }
 
       .slider-nav {
-        display: none;
+        display: inline-flex;
       }
 
       .ecosystem,
@@ -9813,12 +9836,25 @@
       }
 
       .mobile-nav-toggle {
-        width: 40px;
-        height: 40px;
+        width: 38px;
+        height: 38px;
+      }
+
+      .slides::after {
+        right: 14px;
+        left: 14px;
+      }
+
+      .hero-bottom {
+        padding-bottom: 12px;
+      }
+
+      .slider-nav {
+        padding: 5px 9px;
       }
 
       .hero h1 {
-        font-size: clamp(1.95rem, 10.8vw, 2.72rem);
+        font-size: clamp(1.56rem, 8.1vw, 1.92rem);
       }
 
       .product-card,
