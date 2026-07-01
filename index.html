@@ -7849,6 +7849,31 @@
       outline: none;
     }
 
+    .resources-offer-cta.is-coming-soon {
+      color: rgba(255, 255, 255, 0.94);
+      background: linear-gradient(180deg, #a0a9b6 0%, #8993a1 52%, #798392 100%);
+      box-shadow:
+        0 14px 26px rgba(63, 73, 86, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        inset 0 -1px 0 rgba(63, 73, 86, 0.22);
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .resources-offer-cta.is-coming-soon::before {
+      display: none;
+      animation: none;
+    }
+
+    .resources-offer-cta.is-coming-soon:hover,
+    .resources-offer-cta.is-coming-soon:focus-visible {
+      transform: none;
+      box-shadow:
+        0 14px 26px rgba(63, 73, 86, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        inset 0 -1px 0 rgba(63, 73, 86, 0.22);
+    }
+
     @keyframes resourcesButtonSheen {
       0%, 58%, 100% {
         transform: translateX(-180%) skewX(-24deg);
@@ -10321,7 +10346,7 @@
                     </div>
                     <span class="resources-price-plan">No plano<br>anual</span>
                   </div>
-                  <a class="resources-offer-cta" href="#contato">Quero começar agora mesmo!</a>
+                  <span class="resources-offer-cta is-coming-soon" aria-disabled="true">EM BREVE</span>
                   <div class="resources-price-tags" aria-label="Condições da oferta">
                     <span class="resources-price-chip"><span class="resources-price-chip-icon is-guarantee" aria-hidden="true"></span>07 dias de garantia</span>
                     <span class="resources-price-chip"><span class="resources-price-chip-icon is-secure" aria-hidden="true"></span>Compra segura</span>
@@ -10373,7 +10398,7 @@
                     </div>
                     <span class="resources-price-plan">No plano<br>anual</span>
                   </div>
-                  <a class="resources-offer-cta" href="#contato">Quero começar agora mesmo!</a>
+                  <span class="resources-offer-cta is-coming-soon" aria-disabled="true">EM BREVE</span>
                   <div class="resources-price-tags" aria-label="Condições da oferta">
                     <span class="resources-price-chip"><span class="resources-price-chip-icon is-guarantee" aria-hidden="true"></span>07 dias de garantia</span>
                     <span class="resources-price-chip"><span class="resources-price-chip-icon is-secure" aria-hidden="true"></span>Compra segura</span>
@@ -10425,7 +10450,7 @@
                     </div>
                     <span class="resources-price-plan">No plano<br>anual</span>
                   </div>
-                  <a class="resources-offer-cta" href="#contato">Quero começar agora mesmo!</a>
+                  <span class="resources-offer-cta is-coming-soon" aria-disabled="true">EM BREVE</span>
                   <div class="resources-price-tags" aria-label="Condições da oferta">
                     <span class="resources-price-chip"><span class="resources-price-chip-icon is-guarantee" aria-hidden="true"></span>07 dias de garantia</span>
                     <span class="resources-price-chip"><span class="resources-price-chip-icon is-secure" aria-hidden="true"></span>Compra segura</span>
@@ -10471,7 +10496,7 @@
                     <span>Por apenas</span>
                   </div>
                   <div class="resources-full-price" aria-label="Preço de 597 reais"><span class="resources-price-currency">R$</span><span class="resources-price-whole">597</span><span class="resources-price-cents">,00</span></div>
-                  <a class="resources-offer-cta resources-full-cta" href="#contato">Quero economizar e começar agora!</a>
+                  <span class="resources-offer-cta resources-full-cta is-coming-soon" aria-disabled="true">EM BREVE</span>
                 </div>
               </div>
 
