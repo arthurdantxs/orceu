@@ -9738,6 +9738,13 @@
       }
 
       .product-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+          "brand chip"
+          "text text"
+          "actions actions";
+        align-items: start;
         width: 100%;
         max-width: none;
         flex-basis: auto;
@@ -9755,6 +9762,9 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        grid-area: chip;
+        justify-self: end;
+        align-self: center;
         min-height: 24px;
         padding: 0 11px;
         font-size: 0.42rem;
@@ -9764,8 +9774,9 @@
       }
 
       .product-brand {
+        grid-area: brand;
         gap: 10px;
-        margin-top: 12px;
+        margin-top: 0;
       }
 
       .product-brand img {
@@ -9779,12 +9790,14 @@
       }
 
       .product-text {
+        grid-area: text;
         margin-top: 14px;
         font-size: 0.69rem;
         line-height: 1.42;
       }
 
       .card-actions {
+        grid-area: actions;
         padding-top: 14px;
       }
 
