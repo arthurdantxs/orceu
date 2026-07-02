@@ -6373,12 +6373,62 @@
       }
 
       .diagnostic {
-        padding-top: var(--blue-stack-gap);
-        padding-bottom: 32px;
+        padding-top: clamp(26px, 8vw, 42px);
+        padding-bottom: 26px;
+      }
+
+      .diagnostic-bg {
+        padding: 26px 18px 24px;
+        border-radius: 24px;
+      }
+
+      .diagnostic-shell {
+        gap: 18px;
+      }
+
+      .diagnostic-left {
+        justify-content: flex-start;
+        gap: 14px;
+      }
+
+      .diagnostic-tag {
+        align-self: center;
+        min-height: 28px;
+        max-width: 100%;
+        padding: 0 13px;
+        font-size: clamp(0.48rem, 2.4vw, 0.56rem);
+        letter-spacing: 0.08em;
       }
 
       .diagnostic-head h3 {
-        font-size: clamp(2rem, 10vw, 3rem);
+        max-width: 100%;
+        font-size: clamp(1.42rem, 6.4vw, 1.88rem);
+        line-height: 1.08;
+        letter-spacing: 0;
+      }
+
+      .diagnostic-head h3 br {
+        display: none;
+      }
+
+      .diagnostic-right {
+        gap: 12px;
+      }
+
+      .diagnostic-copy {
+        font-size: 0.74rem;
+        line-height: 1.35;
+      }
+
+      .diagnostic-open {
+        min-height: 48px;
+        padding: 0 8px 0 18px;
+        font-size: 0.82rem;
+      }
+
+      .diagnostic-open-icon {
+        width: 34px;
+        height: 34px;
       }
 
       .founder-spotlight {
