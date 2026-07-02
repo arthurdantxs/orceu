@@ -2051,10 +2051,57 @@
     .eyebrow,
     .section-kicker,
     .diagnostic-tag,
-    .card-chip {
+    .card-chip,
+    .card-open-chip,
+    .nav-dropdown-kicker,
+    .resources-offer-badge,
+    .resources-module-pill,
+    .resources-feature-badge,
+    .resources-riow-badge,
+    .resources-full-include-pill,
+    .quiz-kicker,
+    .quiz-result-badge,
+    .pf-profiles .pf-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
       line-height: 1;
       text-align: center;
       white-space: nowrap;
+      vertical-align: middle;
+    }
+
+    .btn,
+    .btn-primary,
+    .btn-secondary,
+    .card-cta,
+    .software-spotlight-cta,
+    .diagnostic-open,
+    .resources-primary,
+    .resources-secondary,
+    .resources-offer-cta,
+    .quiz-button,
+    .quiz-option {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      line-height: 1;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .btn > *,
+    .card-cta > *,
+    .software-spotlight-cta > *,
+    .diagnostic-open > *,
+    .resources-primary > *,
+    .resources-secondary > *,
+    .resources-offer-cta > *,
+    .quiz-button > *,
+    .quiz-option > * {
+      line-height: 1;
     }
 
     .diagnostic-head h3 {
@@ -5791,8 +5838,8 @@
       }
 
       .slide-inner {
-        max-width: min(100%, 18.75rem);
-        margin: 0 auto 56px;
+        max-width: min(100%, 21rem);
+        margin: 0 auto 44px;
         align-items: center;
         text-align: center;
       }
@@ -5807,7 +5854,7 @@
 
       .hero h1 {
         max-width: none;
-        font-size: clamp(1.72rem, 7vw, 2.1rem);
+        font-size: clamp(1.48rem, 5.8vw, 1.8rem);
         line-height: 0.98;
         text-wrap: balance;
       }
@@ -5817,10 +5864,10 @@
       }
 
       .hero-desc {
-        max-width: 19.5rem;
-        margin-top: 14px;
-        font-size: clamp(0.84rem, 3.3vw, 0.95rem);
-        line-height: 1.42;
+        max-width: 20.5rem;
+        margin-top: 12px;
+        font-size: clamp(0.74rem, 3vw, 0.86rem);
+        line-height: 1.32;
         text-align: center;
       }
 
@@ -5835,7 +5882,7 @@
         justify-content: center;
         align-items: center;
         gap: 12px;
-        margin-top: 18px;
+        margin-top: 14px;
       }
 
       .btn {
@@ -9466,29 +9513,37 @@
         top: calc(100% + 8px);
         right: var(--mobile-gutter);
         left: auto;
-        width: min(286px, calc(100vw - (var(--mobile-gutter) * 2)));
-        gap: 5px;
-        max-height: min(54svh, 360px);
-        padding: 8px;
-        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: min(272px, calc(100vw - (var(--mobile-gutter) * 2)));
+        gap: 4px;
+        max-height: min(42svh, 292px);
+        padding: 7px;
+        border-radius: 14px;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
       }
 
+      .site-header .nav-links > li,
+      .site-header .nav-dropdown-wrapper {
+        width: 100%;
+      }
+
       .site-header .nav-links > li > a {
-        min-height: 40px;
-        padding: 0 11px;
-        font-size: 0.72rem;
+        min-height: 38px;
+        padding: 0 10px;
+        font-size: 0.68rem;
       }
 
       .site-header .nav-dropdown {
         margin-top: 6px;
-        padding: 12px;
-        border-radius: 16px;
+        padding: 8px;
+        border-radius: 14px;
       }
 
       .site-header .nav-dropdown-head {
-        margin-bottom: 10px;
+        display: none;
       }
 
       .site-header .nav-dropdown-title {
@@ -9496,11 +9551,17 @@
         line-height: 1.16;
       }
 
+      .site-header .nav-dropdown-list {
+        gap: 6px;
+      }
+
       .site-header .nav-dropdown-list a {
         grid-template-columns: 28px minmax(0, 1fr);
         align-items: center;
-        gap: 10px;
-        padding: 10px;
+        gap: 8px;
+        padding: 8px 10px;
+        min-height: 38px;
+        border-radius: 12px;
       }
 
       .site-header .nav-dropdown-kicker,
@@ -9526,8 +9587,8 @@
       }
 
       .slide-inner {
-        max-width: min(100%, 18.75rem);
-        margin: 0 auto 42px;
+        max-width: min(100%, 21.75rem);
+        margin: 0 auto 34px;
         align-items: center;
         text-align: center;
       }
@@ -9561,9 +9622,9 @@
 
       .hero h1 {
         max-width: none;
-        font-size: clamp(1.72rem, 7vw, 2.08rem);
-        line-height: 1.02;
-        letter-spacing: -0.055em;
+        font-size: clamp(1.5rem, 5.9vw, 1.84rem);
+        line-height: 0.98;
+        letter-spacing: -0.05em;
         text-wrap: balance;
       }
 
@@ -9572,10 +9633,10 @@
       }
 
       .hero-desc {
-        max-width: 19.5rem;
-        margin-top: 14px;
-        font-size: clamp(0.84rem, 3.8vw, 0.96rem);
-        line-height: 1.42;
+        max-width: 21rem;
+        margin-top: 12px;
+        font-size: clamp(0.75rem, 3.2vw, 0.88rem);
+        line-height: 1.34;
         text-align: center;
       }
 
@@ -9588,7 +9649,7 @@
         justify-content: center;
         align-items: center;
         gap: 12px;
-        margin-top: 16px;
+        margin-top: 14px;
       }
 
       .hero-actions .btn-primary {
@@ -10044,11 +10105,35 @@
 
       .navbar {
         grid-template-columns: auto 1fr auto;
+        gap: 8px;
+        min-height: 48px;
+        padding-right: 12px;
+        padding-left: 12px;
       }
 
       .mobile-nav-toggle {
-        width: 38px;
-        height: 38px;
+        width: 36px;
+        height: 36px;
+      }
+
+      .site-header .nav-links {
+        width: min(258px, calc(100vw - 24px));
+        max-height: min(38svh, 248px);
+        padding: 6px;
+      }
+
+      .site-header .nav-links > li > a {
+        min-height: 36px;
+        font-size: 0.65rem;
+      }
+
+      .site-header .nav-dropdown {
+        padding: 7px;
+      }
+
+      .site-header .nav-dropdown-list a {
+        min-height: 36px;
+        padding: 7px 9px;
       }
 
       .slides::after {
@@ -10065,7 +10150,14 @@
       }
 
       .hero h1 {
-        font-size: clamp(1.56rem, 8.1vw, 1.92rem);
+        font-size: clamp(1.36rem, 6vw, 1.64rem);
+        line-height: 0.98;
+      }
+
+      .hero-desc {
+        max-width: 18.75rem;
+        font-size: clamp(0.7rem, 2.9vw, 0.8rem);
+        line-height: 1.3;
       }
 
       .product-card,
